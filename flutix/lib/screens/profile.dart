@@ -5,7 +5,7 @@ import 'package:flutix/screens/splash_screen.dart';
 import 'package:flutix/screens/wallet.dart';
 import 'package:flutter/material.dart';
 import 'package:dotted_line/dotted_line.dart';
-import 'package:flutix/widgets/app_nav.dart';
+// import 'package:flutix/widgets/app_nav.dart';
 // import 'package:flutix/widgets/app_nav.dart';
 
 class Profile extends StatelessWidget {

@@ -17,7 +17,7 @@ class Movie_Data_Play {
 }
 
 class Movie_Data_Play_Provider extends ChangeNotifier {
-  List<Movie_Data_Play> _MovieListPlay = [
+  List<Movie_Data_Play> _movieListPlay = [
     Movie_Data_Play(
         title: 'The NUN II',
         genre: 'Horror',
@@ -41,5 +41,5 @@ class Movie_Data_Play_Provider extends ChangeNotifier {
         picture: 'poster8.jpg'),
   ];
 
-  List<Movie_Data_Play> get MovieListPlay => _MovieListPlay;
+  List<Movie_Data_Play> get movieListPlay => _movieListPlay;
 }

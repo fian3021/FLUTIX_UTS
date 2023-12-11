@@ -1,10 +1,11 @@
 import 'package:flutix/model/movie_cooming_list.dart';
 import 'package:flutix/model/movie_list_play.dart';
+import 'package:flutix/screens/movie_detail.dart';
 // import 'package:flutix/model/movie_list.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 // import 'package:flutix/widgets/app_nav.dart';
-import 'package:provider/provider.dart';
+// import 'package:provider/provider.dart';
 
 class Home_Movies extends StatefulWidget {
   const Home_Movies({super.key});
@@ -494,7 +495,7 @@ class Play_Movie extends StatelessWidget {
   Widget build(BuildContext context) {
     var tinggi = MediaQuery.of(context).size.height;
     return CarouselSlider.builder(
-      itemCount: play.MovieListPlay.length,
+      itemCount: play.movieListPlay.length,
       options: CarouselOptions(
         height: 260,
         autoPlay: true,
@@ -505,49 +506,60 @@ class Play_Movie extends StatelessWidget {
         autoPlayAnimationDuration: const Duration(seconds: 1),
       ),
       itemBuilder: (context, index, PageView) {
-        return ClipRRect(
-            borderRadius: BorderRadius.circular(12),
-            child: Container(
-              height: tinggi,
-              width: 380,
-              decoration: ShapeDecoration(
-                color: Color.fromRGBO(0, 0, 0, 1),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+        return InkWell(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) =>
+                    Movie_Detail(movieDetail: play.movieListPlay[index]),
+              ),
+            );
+          },
+          child: ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Container(
+                height: tinggi,
+                width: 380,
+                decoration: ShapeDecoration(
+                  color: Color.fromRGBO(0, 0, 0, 1),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                 ),
-              ),
-              child: ListView(
-                // mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Container(
-                      height: 165,
-                      width: 280,
-                      decoration: ShapeDecoration(
-                          color: Color.fromRGBO(0, 0, 0, 1),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          image: DecorationImage(
-                              image: AssetImage(
-                                  "assets/${play.MovieListPlay[index].picture}"),
-                              fit: BoxFit.fill)),
+                child: ListView(
+                  // mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Container(
+                        height: 165,
+                        width: 280,
+                        decoration: ShapeDecoration(
+                            color: Color.fromRGBO(0, 0, 0, 1),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            image: DecorationImage(
+                                image: AssetImage(
+                                    "assets/${play.movieListPlay[index].picture}"),
+                                fit: BoxFit.fill)),
+                      ),
                     ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.fromLTRB(15, 0, 0, 0),
-                    child: Text(
-                      "${play.MovieListPlay[index].title}",
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.white),
+                    Container(
+                      margin: EdgeInsets.fromLTRB(15, 0, 0, 0),
+                      child: Text(
+                        "${play.movieListPlay[index].title}",
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.white),
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ));
+                  ],
+                ),
+              )),
+        );
       },
     );
   }
