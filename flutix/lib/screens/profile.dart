@@ -1,4 +1,7 @@
+import 'package:flutix/model/AUTH.dart';
 import 'package:flutix/screens/edit_profile.dart';
+import 'package:flutix/screens/sign_in.dart';
+import 'package:flutix/screens/splash_screen.dart';
 import 'package:flutix/screens/wallet.dart';
 import 'package:flutter/material.dart';
 import 'package:dotted_line/dotted_line.dart';
@@ -14,7 +17,7 @@ class Profile extends StatelessWidget {
     var tinggi = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 54, 53, 56),
-      
+
       // bottomNavigationBar: App_Nav(),
       body: ListView(
         children: [
@@ -186,7 +189,8 @@ class Profile extends StatelessWidget {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Edit_Profile()),
+                          MaterialPageRoute(
+                              builder: (context) => Edit_Profile()),
                         );
                       },
                       icon: Icon(
@@ -283,6 +287,27 @@ class Profile extends StatelessWidget {
                           fontWeight: FontWeight.w400,
                         ),
                       ),
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.logout,size: 30,
+                      color: Color.fromARGB(255, 180, 212, 41),),
+                      title: Text('Keluar',
+                          style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                      ),),
+                      onTap: () async {
+                        // Call the signOut method from your AuthService
+                        await AuthService().signOut();
+
+                        // Navigate back to the login or home screen (depending on your app flow)
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Sign_In()),
+                        );
+                      },
                     ),
                   ],
                 ),
