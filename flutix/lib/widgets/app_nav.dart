@@ -2,7 +2,7 @@ import 'package:flutix/screens/home_movies.dart';
 import 'package:flutix/screens/profile.dart';
 import 'package:flutix/screens/wallet.dart';
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+// import 'package:carousel_slider/carousel_slider.dart';
 // import 'package:flutix/widgets/app_nav.dart';
 
 class App_Nav extends StatefulWidget {

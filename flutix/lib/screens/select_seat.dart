@@ -1,3 +1,5 @@
+import 'package:flutix/screens/checkout_page.dart';
+// import 'package:flutix/screens/success_checkout.dart';
 import 'package:flutter/material.dart';
 
 class Select_Seat extends StatelessWidget {
@@ -6,6 +8,7 @@ class Select_Seat extends StatelessWidget {
     var lebar = MediaQuery.of(context).size.width;
 
     return Scaffold(
+      backgroundColor: Color.fromRGBO(52, 50, 56, 1),
       appBar: AppBar(
         title: Center(
           child: Text('Select Seat',
@@ -1016,11 +1019,24 @@ class Select_Seat extends StatelessWidget {
                     "Confirm Your Book",
                     style: TextStyle(color: Colors.white, fontSize: 18),
                   ),
-                  Icon(
-                    Icons.arrow_circle_right,
-                    size: 50.0,
-                    color: Color.fromRGBO(180, 212, 41, 1),
-                  )
+                  Container(
+                      width: 58,
+                      height: 58,
+                      decoration: ShapeDecoration(
+                        color: Color.fromARGB(255, 180, 212, 41),
+                        shape: OvalBorder(),
+                      ),
+                      child: IconButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Checkout_Page()),
+                            );
+                          },
+                          icon: Icon(
+                            Icons.keyboard_double_arrow_right_outlined,
+                          )))
                 ]),
           )
         ],

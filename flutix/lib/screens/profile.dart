@@ -2,7 +2,7 @@ import 'package:flutix/screens/edit_profile.dart';
 import 'package:flutix/screens/wallet.dart';
 import 'package:flutter/material.dart';
 import 'package:dotted_line/dotted_line.dart';
-import 'package:flutix/widgets/app_nav.dart';
+// import 'package:flutix/widgets/app_nav.dart';
 // import 'package:flutix/widgets/app_nav.dart';
 
 class Profile extends StatelessWidget {
@@ -14,7 +14,7 @@ class Profile extends StatelessWidget {
     var tinggi = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 54, 53, 56),
-      
+
       // bottomNavigationBar: App_Nav(),
       body: ListView(
         children: [
@@ -186,7 +186,8 @@ class Profile extends StatelessWidget {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Edit_Profile()),
+                          MaterialPageRoute(
+                              builder: (context) => Edit_Profile()),
                         );
                       },
                       icon: Icon(

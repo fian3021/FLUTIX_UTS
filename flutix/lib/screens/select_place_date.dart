@@ -1,4 +1,7 @@
+import 'package:flutix/screens/select_seat.dart';
 import 'package:flutter/material.dart';
+
+import '../widgets/back.dart';
 
 class Select_Place_Date extends StatefulWidget {
   const Select_Place_Date({super.key});
@@ -8,12 +11,30 @@ class Select_Place_Date extends StatefulWidget {
 }
 
 class _Select_Place_DateState extends State<Select_Place_Date> {
+  int selectedDate = 0;
+  int selectedTime = 0;
+
+  String getDayOfWeek(int dayIndex) {
+    List<String> daysOfWeek = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ];
+    return daysOfWeek[(dayIndex - 1) % 8];
+  }
+
   @override
   Widget build(BuildContext context) {
     var lebar = MediaQuery.of(context).size.width;
 
     return Scaffold(
+        backgroundColor: Color.fromRGBO(52, 50, 56, 1),
         appBar: AppBar(
+          leading: Arrow_Back(),
           title: Center(
             child: Text('Choose Date',
                 style: TextStyle(fontSize: 20, color: Colors.white)),
@@ -27,196 +48,67 @@ class _Select_Place_DateState extends State<Select_Place_Date> {
               height: 80,
               child: ListView(
                 scrollDirection: Axis.horizontal,
-                children: [
-                  Container(
-                    width: 75,
-                    height: 80,
-                    margin: EdgeInsets.fromLTRB(30, 0, 10, 0),
-                    decoration: BoxDecoration(
-                        color: Color.fromRGBO(180, 212, 41, 1),
-                        borderRadius: BorderRadius.circular(5)),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Center(
+                children: List.generate(7, (index) {
+                  return GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        selectedDate = index;
+                      });
+                    },
+                    child: Container(
+                      width: 75,
+                      height: 80,
+                      margin: EdgeInsets.fromLTRB(
+                        index == 0 ? 30 : 10,
+                        0,
+                        10,
+                        0,
+                      ),
+                      decoration: BoxDecoration(
+                        color: selectedDate == index
+                            ? Color.fromRGBO(180, 212, 41, 1) // Selected color
+                            : Color.fromRGBO(177, 177, 177, 1), // Default color
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Center(
                             child: Text(
-                          "Sep 3",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromRGBO(54, 53, 56, 1)),
-                        )),
-                        Center(
+                              "Sep ${index + 3}",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromRGBO(54, 53, 56, 1),
+                              ),
+                            ),
+                          ),
+                          Center(
                             child: Text(
-                          "Sunday",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromRGBO(54, 53, 56, 1)),
-                        )),
-                      ],
+                              getDayOfWeek(index + 1),
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromRGBO(54, 53, 56, 1),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  Container(
-                    width: 75,
-                    height: 80,
-                    margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                    decoration: BoxDecoration(
-                        color: Color.fromRGBO(177, 177, 177, 1),
-                        borderRadius: BorderRadius.circular(5)),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Center(
-                            child: Text(
-                          "Sep 4",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromRGBO(54, 53, 56, 1)),
-                        )),
-                        Center(
-                            child: Text(
-                          "Monday",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromRGBO(54, 53, 56, 1)),
-                        )),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    width: 75,
-                    height: 80,
-                    margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                    decoration: BoxDecoration(
-                        color: Color.fromRGBO(177, 177, 177, 1),
-                        borderRadius: BorderRadius.circular(5)),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Center(
-                            child: Text(
-                          "Sep 5",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromRGBO(54, 53, 56, 1)),
-                        )),
-                        Center(
-                            child: Text(
-                          "Tuesday",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromRGBO(54, 53, 56, 1)),
-                        )),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    width: 75,
-                    height: 80,
-                    margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                    decoration: BoxDecoration(
-                        color: Color.fromRGBO(177, 177, 177, 1),
-                        borderRadius: BorderRadius.circular(5)),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Center(
-                            child: Text(
-                          "Sep 6",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromRGBO(54, 53, 56, 1)),
-                        )),
-                        Center(
-                            child: Text(
-                          "Wednesday",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromRGBO(54, 53, 56, 1)),
-                        )),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    width: 75,
-                    height: 80,
-                    margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                    decoration: BoxDecoration(
-                        color: Color.fromRGBO(177, 177, 177, 1),
-                        borderRadius: BorderRadius.circular(5)),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Center(
-                            child: Text(
-                          "Sep 7",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromRGBO(54, 53, 56, 1)),
-                        )),
-                        Center(
-                            child: Text(
-                          "Thursday",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromRGBO(54, 53, 56, 1)),
-                        )),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    width: 75,
-                    height: 80,
-                    margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                    decoration: BoxDecoration(
-                        color: Color.fromRGBO(177, 177, 177, 1),
-                        borderRadius: BorderRadius.circular(5)),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Center(
-                            child: Text(
-                          "Sep 8",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromRGBO(54, 53, 56, 1)),
-                        )),
-                        Center(
-                            child: Text(
-                          "Friday",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromRGBO(54, 53, 56, 1)),
-                        )),
-                      ],
-                    ),
-                  ),
-                ],
+                  );
+                }),
               ),
             ),
+            // SizedBox(
+            //   width: lebar,
+            //   height: 60,
+            //   child: ListView(
+            //     children: [],
+            //   ),
+            // ),
             SizedBox(
               width: lebar,
               height: 60,
@@ -644,11 +536,24 @@ class _Select_Place_DateState extends State<Select_Place_Date> {
                       "Select Your Seat",
                       style: TextStyle(color: Colors.white, fontSize: 18),
                     ),
-                    Icon(
-                      Icons.arrow_circle_right,
-                      size: 50.0,
-                      color: Color.fromRGBO(180, 212, 41, 1),
-                    )
+                    Container(
+                        width: 58,
+                        height: 58,
+                        decoration: ShapeDecoration(
+                          color: Color.fromARGB(255, 180, 212, 41),
+                          shape: OvalBorder(),
+                        ),
+                        child: IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Select_Seat()),
+                              );
+                            },
+                            icon: Icon(
+                              Icons.keyboard_double_arrow_right_outlined,
+                            )))
                   ]),
             )
           ],

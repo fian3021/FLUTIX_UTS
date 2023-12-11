@@ -8,7 +8,7 @@ class Wallet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var lebar = MediaQuery.of(context).size.width;
-    var tinggi = MediaQuery.of(context).size.height;
+    // var tinggi = MediaQuery.of(context).size.height;
     return DraggableHome(
       // leading: GestureDetector(
       //     child: Icon( Icons.arrow_back_ios, color: Colors.black,  ),

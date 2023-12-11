@@ -6,6 +6,7 @@ class Success_Checkout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromRGBO(52, 50, 56, 1),
       body: Center(
         child: Column(
           children: [

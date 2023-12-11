@@ -15,7 +15,7 @@ class _Edit_ProfileState extends State<Edit_Profile> {
   @override
   Widget build(BuildContext context) {
     var lebar = MediaQuery.of(context).size.width;
-    var tinggi = MediaQuery.of(context).size.height;
+    // var tinggi = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Color.fromRGBO(54, 53, 56, 1),
       appBar: AppBar(
