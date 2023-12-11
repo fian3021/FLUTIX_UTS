@@ -28,7 +28,6 @@ class _Home_MoviesState extends State<Home_Movies> {
   @override
   Widget build(BuildContext context) {
     var lebar = MediaQuery.of(context).size.width;
-    
 
     // final _listPage = <Widget>[const Text("Beranda"), Profile(), Wallet()];
 
@@ -510,21 +509,21 @@ class Play_Movie extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
             child: Container(
               height: tinggi,
-              width: 300,
+              width: 380,
               decoration: ShapeDecoration(
                 color: Color.fromRGBO(0, 0, 0, 1),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+              child: ListView(
+                // mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: Container(
-                      height: 180,
-                      width: 200,
+                      height: 165,
+                      width: 280,
                       decoration: ShapeDecoration(
                           color: Color.fromRGBO(0, 0, 0, 1),
                           shape: RoundedRectangleBorder(
@@ -534,16 +533,16 @@ class Play_Movie extends StatelessWidget {
                               image: AssetImage(
                                   "assets/${play.MovieListPlay[index].picture}"),
                               fit: BoxFit.fill)),
-                      child: Container(
-                        margin: EdgeInsets.only(top: 160),
-                        child: Text(
-                          "${play.MovieListPlay[index].title}",
-                          style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.white),
-                        ),
-                      ),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.fromLTRB(15, 0, 0, 0),
+                    child: Text(
+                      "${play.MovieListPlay[index].title}",
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.white),
                     ),
                   ),
                 ],
