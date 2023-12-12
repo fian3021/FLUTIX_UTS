@@ -1,5 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutix/model/AUTH.dart';
 import 'package:flutix/screens/sign_up.dart';
 import 'package:flutter/material.dart';
 import 'package:flutix/widgets/app_nav.dart';
@@ -10,8 +8,6 @@ class Sign_In extends StatefulWidget {
 }
 
 class _Sign_InState extends State<Sign_In> {
-  final AuthService _auth = AuthService();
-
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -126,10 +122,10 @@ class _Sign_InState extends State<Sign_In> {
                   ),
                   SizedBox(height: 54),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        padding: EdgeInsets.only(right:20),
+                        padding: EdgeInsets.only(left: 20),
                         child: Text(
                           'Countinue to Sign In',
                           style: TextStyle(
@@ -140,9 +136,10 @@ class _Sign_InState extends State<Sign_In> {
                         ),
                       ),
                       SizedBox(
-                        width: 85,
+                        width: 52,
                       ),
                       Container(
+                          margin: EdgeInsets.only(right: 56),
                           width: 58,
                           height: 58,
                           decoration: ShapeDecoration(
@@ -150,30 +147,13 @@ class _Sign_InState extends State<Sign_In> {
                             shape: OvalBorder(),
                           ),
                           child: IconButton(
-                              onPressed: () async {
-                                User? user =
-                                    await _auth.signInWithEmailAndPassword(
-                                        emailController.text,
-                                        passwordController.text,
-                                        context);
-
-                                if (user != null) {
-                                  // Navigasi ke halaman home setelah login berhasil
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                     builder: (context) => App_Nav(),
-                                    ),
-                                  );
-                                }
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => App_Nav()),
+                                );
                               },
-                              // onPressed: () {
-                              //   Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //         builder: (context) => App_Nav()),
-                              //   );
-                              // },
                               icon: Icon(
                                 Icons.keyboard_double_arrow_right_outlined,
                               )))
@@ -194,15 +174,7 @@ class _Sign_InState extends State<Sign_In> {
                               style: TextStyle(
                                 color: Color.fromRGBO(177, 177, 177, 1),
                                 fontSize: 15,
-                              ))
-                          // Text(
-                          //   'Create New Account',
-                          //   style: TextStyle(
-                          //     color: Color.fromRGBO(177, 177, 177, 1),
-                          //     fontSize: 15,
-                          //     fontFamily: 'Poppins',
-                          //   ),
-                          ),
+                              ))),
                     ),
                   ),
                 ],

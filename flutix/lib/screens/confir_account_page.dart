@@ -1,3 +1,5 @@
+import 'package:flutix/screens/user_profiling_page.dart';
+import 'package:flutix/widgets/app_nav.dart';
 import 'package:flutter/material.dart';
 
 class ConfirAccount extends StatelessWidget {
@@ -10,18 +12,33 @@ class ConfirAccount extends StatelessWidget {
       body: ListView(
         children: [
           SizedBox(height: 22),
-          Column(
+          Row(
             children: [
-              Container(
-                child: Center(
-                  child: Text('Confirm\n New Account',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 21,
-                          fontFamily: 'Poppins')),
-                ),
+              SizedBox(
+                width: 20,
               ),
+              GestureDetector(
+                child: Icon(
+                  Icons.keyboard_double_arrow_left_outlined,
+                  color: Color.fromARGB(255, 180, 212, 41),
+                  size: 40,
+                ),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => User_Profiling()),
+                  );
+                },
+              ),
+               SizedBox(width: 63),
+              Center(
+                child: Text('Confirm\n New Account',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 21,
+                        fontFamily: 'Poppins')),
+              )
             ],
           ),
           Padding(
@@ -63,18 +80,44 @@ class ConfirAccount extends StatelessWidget {
               ),
             ],
           ),
-           SizedBox(height: 111),
-                Container(
-                  padding: EdgeInsets.only(left: 52),
-                  child: Text(
-                    'Yes, I am In',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontFamily: 'Poppins',
-                    ),
+          SizedBox(height: 111),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                padding: EdgeInsets.only(left: 52),
+                child: Text(
+                  'Yes, I am In',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontFamily: 'Poppins',
                   ),
-                )
+                ),
+              ),
+              SizedBox(
+                width: 85,
+              ),
+              Container(
+                  margin: EdgeInsets.only(right: 56),
+                  width: 58,
+                  height: 58,
+                  decoration: ShapeDecoration(
+                    color: Color.fromARGB(255, 180, 212, 41),
+                    shape: OvalBorder(),
+                  ),
+                  child: IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => App_Nav()),
+                        );
+                      },
+                      icon: Icon(
+                        Icons.keyboard_double_arrow_right_outlined,
+                      )))
+            ],
+          ),
         ],
       ),
     );
