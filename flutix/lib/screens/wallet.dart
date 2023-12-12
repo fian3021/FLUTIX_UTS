@@ -2,6 +2,7 @@ import 'package:flutix/model/wallet.dart';
 import 'package:flutix/screens/wallet_topup.dart';
 import 'package:flutter/material.dart';
 import 'package:draggable_home/draggable_home.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 // import 'camera_preview.dart';
@@ -153,9 +154,11 @@ class Wallet extends StatelessWidget {
               padding: const EdgeInsets.only(top: 45),
               child: Consumer<WalletProvider>(
                 builder: (context, walletProvider, child) {
+                  final saldoFormatted = NumberFormat.decimalPattern('id_ID')
+                      .format(walletProvider.saldo);
+
                   return Text(
-                    // "IDR ${walletProvider.walletModel.saldo.toString()}",
-                    'Rp.${walletProvider.saldo.toString()}',
+                    'Rp.$saldoFormatted',
                     style: TextStyle(
                       color: Color.fromARGB(255, 180, 212, 41),
                       fontSize: 40,
