@@ -126,7 +126,7 @@ class _Sign_InState extends State<Sign_In> {
                   ),
                   SizedBox(height: 54),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
                         padding: EdgeInsets.only(right: 20),
@@ -143,7 +143,7 @@ class _Sign_InState extends State<Sign_In> {
                         width: 52,
                       ),
                       Container(
-                          margin: EdgeInsets.only(right: 56),
+                          margin: EdgeInsets.only(right: 20),
                           width: 58,
                           height: 58,
                           decoration: ShapeDecoration(

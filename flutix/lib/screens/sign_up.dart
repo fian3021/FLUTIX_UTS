@@ -35,37 +35,34 @@ class _Sign_UpState extends State<Sign_Up> {
 
   File? _image;
 
-  Future<void> _pickImage() async {
-    final pickedFile =
-        await _imagePicker.pickImage(source: ImageSource.gallery);
-    if (pickedFile != null) {
-      setState(() {
-        _image = File(pickedFile.path);
-      });
-    }
-  }
-
-  Future<void> _uploadImage() async {
+  Future<void> _pickAndUploadImage() async {
+    
     try {
-      if (_image == null) return;
+      final pickedFile =
+          await _imagePicker.pickImage(source: ImageSource.gallery);
+      if (pickedFile != null) {
+        setState(() {
+          _image = File(pickedFile.path);
+        });
 
-      // String userId = _auth.currentUser?.uid ?? "";
-      String fileName = DateTime.now().toString() + ".png";
+        String fileName = DateTime.now().toString() + ".png";
 
-      Reference storageReference =
-          _storage.ref().child("images").child(fileName);
+        Reference storageReference =
+            _storage.ref().child("images/user_profile").child(fileName);
 
-      UploadTask uploadTask = storageReference.putFile(_image!);
+        UploadTask uploadTask = storageReference.putFile(_image!);
 
-      await uploadTask.whenComplete(() => print("Image Uploaded"));
+        await uploadTask.whenComplete(() => print("Image Uploaded"));
 
-      String imageUrl = await storageReference.getDownloadURL();
 
-      // Handle the imageUrl as needed (e.g., save to Firestore)
+        imageUrl = await storageReference.getDownloadURL();
 
-      print("Download URL: $imageUrl");
+        print("_imageUrl: $imageUrl");
+
+        print("Download URL: $imageUrl");
+      }
     } catch (e) {
-      print("Error uploading image: $e");
+      print("Error picking and uploading image: $e");
     }
   }
 
@@ -195,16 +192,51 @@ class _Sign_UpState extends State<Sign_Up> {
                           color: Color.fromRGBO(177, 177, 177, 1),
                           borderRadius: BorderRadius.circular(10.0),
                         ),
-                        child: Icon(
-                          Icons.add_a_photo,
-                          size: 50.0,
-                          color: Colors.white,
+                        child: _image != null
+                            ? ClipRRect(
+                                borderRadius: BorderRadius.circular(10.0),
+                                child: Image.file(
+                                  _image!,
+                                  width: 115,
+                                  height: 123,
+                                  fit: BoxFit.cover,
+                                ),
+                              )
+                            : Icon(
+                                Icons.person,
+                                size: 50.0,
+                                color: Colors.white,
+                              ),
+                      ),
+                    ),
+                    Positioned(
+                      left: 194,
+                      top: 84,
+                      child: Container(
+                        width: 45,
+                        height: 45,
+                        decoration: ShapeDecoration(
+                          color: Color(0xFFB4D429),
+                          shape: OvalBorder(
+                              side: BorderSide(color: Colors.black, width: 3)),
+                        ),
+                        child: IconButton(
+                          onPressed: _pickAndUploadImage,
+                          icon: Icon(
+                            Icons.camera_alt_rounded,
+                            color: Color.fromARGB(255, 54, 53, 56),
+                          ),
                         ),
                       ),
                     ),
                   ],
                 ),
-                SizedBox(height: 38),
+
+                // ElevatedButton(
+                //   onPressed: _uploadImage,
+                //   child: Text('Upload Image'),
+                // ),
+                SizedBox(height: 30),
 
                 TextFormField(
                   validator: (value) {
@@ -323,7 +355,7 @@ class _Sign_UpState extends State<Sign_Up> {
                 ),
                 SizedBox(height: 49),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
                       padding: EdgeInsets.only(right: 20),
@@ -344,7 +376,7 @@ class _Sign_UpState extends State<Sign_Up> {
                       ),
                     ),
                     Container(
-                        margin: EdgeInsets.only(right: 56),
+                        margin: EdgeInsets.only(right: 20),
                         width: 58,
                         height: 58,
                         decoration: ShapeDecoration(
@@ -377,19 +409,6 @@ class _Sign_UpState extends State<Sign_Up> {
                                       builder: (context) => User_Profiling()),
                                 );
                               }
-
-                              // if (user != null) {
-                              //   DatabaseService(uid: user.uid).updateUserData(
-                              //     nameController.value.text,
-                              //     eemailController.value.text,
-                              //     paswordController.value.text,
-                              //   );
-                              //   Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //         builder: (context) => User_Profiling()),
-                              //   );
-                              // }
                             },
                             icon: Icon(
                               Icons.keyboard_double_arrow_right_outlined,
