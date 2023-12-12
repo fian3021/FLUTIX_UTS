@@ -81,86 +81,91 @@ class _Sign_UpState extends State<Sign_Up> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 SizedBox(height: 20),
-                // Padding(
-                //   padding: const EdgeInsets.only(top: 10, bottom: 10),
-                //   child: InkWell(
-                //     onTap: () async {
-                //       // Membuat  dan menambahkan package image_picker
-                //       final imgPicker = await ImagePicker()
-                //           .pickImage(source: ImageSource.gallery);
+                Center(
+            child: InkWell(
+              onTap: () async {
+                // Membuat  dan menambahkan package image_picker
+                final imgPicker =
+                    await ImagePicker().pickImage(source: ImageSource.gallery);
 
-                //       if (imgPicker == null) return;
+                if (imgPicker == null) return;
 
-                //       String fileName =
-                //           DateTime.now().microsecondsSinceEpoch.toString();
+                String fileName =
+                    DateTime.now().microsecondsSinceEpoch.toString();
 
-                //       // Membuat reference untuk menggambil folder root pada firebase storage
-                //       Reference referenceRoot = FirebaseStorage.instance.ref();
-                //       Reference referenceImages =
-                //           referenceRoot.child("images/user_profile");
+                // Membua reference untuk menggambil folder root pada firebase storage
+                Reference referenceRoot = FirebaseStorage.instance.ref();
+                Reference referenceImages =
+                    referenceRoot.child("user_profile_pic");
 
-                //       // Membuat reference untuk mengupload gambar
-                //       Reference referenceImageToUpload =
-                //           referenceImages.child('$fileName.jpg');
+                // Membuat reference untuk mengupload gambar
+                Reference referenceImageToUpload =
+                    referenceImages.child(fileName);
 
-                //       // Error handling
-                //       try {
-                //         await referenceImageToUpload
-                //             .putFile(File(imgPicker.path));
-                //         imageUrl =
-                //             await referenceImageToUpload.getDownloadURL();
-                //         print("_imageUrl: $imageUrl");
-                //       } catch (e) {}
-                //     },
-                //     child: imageUrl != null
-                //         ? Padding(
-                //             padding:
-                //                 const EdgeInsets.only(left: 125, right: 125),
-                //             child: Container(
-                //               height: 140,
-                //               decoration: BoxDecoration(
-                //                   color: Colors.black26,
-                //                   borderRadius: BorderRadius.circular(80),
-                //                   image: DecorationImage(
-                //                       image: NetworkImage(imageUrl!))),
-                //             ),
-                //           )
-                //         : Container(
-                //             padding:
-                //                 const EdgeInsets.only(left: 125, right: 125),
-                //             child: Container(
-                //               height: 140,
-                //               decoration: BoxDecoration(
-                //                 color: Colors.black26,
-                //                 borderRadius: BorderRadius.circular(80),
-                //                 image: DecorationImage(
-                //                     image: NetworkImage(
-                //                         imageUrl)),
-                //               ),
-                //             ),
-                //           ),
-                //   ),
-                // ),
-                Stack(
-                  children: [
-                    Align(
-                      alignment: Alignment.topCenter,
-                      child: Container(
-                        width: 115,
-                        height: 123,
-                        decoration: BoxDecoration(
-                          color: Color.fromRGBO(177, 177, 177, 1),
-                          borderRadius: BorderRadius.circular(10.0),
+                // Error handling
+                try {
+                  await referenceImageToUpload.putFile(File(imgPicker.path));
+                  setState(() async {
+                    imageUrl = await referenceImageToUpload.getDownloadURL();
+                  });
+                } catch (e) {
+                  print(e);
+                }
+              },
+              child: imageUrl != ""
+                  ? Container(
+                      margin: const EdgeInsets.only(
+                          bottom: 10, left: 37, right: 37),
+                      width: 90,
+                      height: 90,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        // color: lightMode
+                        //     ? Theme.of(context).colorScheme.secondary
+                        //     : Theme.of(context).colorScheme.onSecondary,
+                        image: DecorationImage(
+                          image: NetworkImage(imageUrl),
+                          fit: BoxFit.cover,
                         ),
-                        child: Icon(
-                          Icons.add_a_photo,
-                          size: 50.0,
-                          color: Colors.white,
+                      ),
+                    )
+                  : Container(
+                      margin: const EdgeInsets.only(
+                          bottom: 10, left: 37, right: 37),
+                      width: 90,
+                      height: 90,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        // color: lightMode
+                        //     ? Theme.of(context).colorScheme.secondary
+                        //     : Theme.of(context).colorScheme.onSecondary,
+                        image: const DecorationImage(
+                          image: NetworkImage('https://firebasestorage.googleapis.com/v0/b/flutix-9d582.appspot.com/o/images%2Fuser_profile%2F4.png?alt=media&token=c6683eef-5b77-4d50-bed9-078b7d5df281'),
                         ),
                       ),
                     ),
-                  ],
-                ),
+            ),
+          ),
+                // Stack(
+                //   children: [
+                //     Align(
+                //       alignment: Alignment.topCenter,
+                //       child: Container(
+                //         width: 115,
+                //         height: 123,
+                //         decoration: BoxDecoration(
+                //           color: Color.fromRGBO(177, 177, 177, 1),
+                //           borderRadius: BorderRadius.circular(10.0),
+                //         ),
+                //         child: Icon(
+                //           Icons.add_a_photo,
+                //           size: 50.0,
+                //           color: Colors.white,
+                //         ),
+                //       ),
+                //     ),
+                //   ],
+                // ),
                 SizedBox(height: 38),
                 TextFormField(
                   validator: (value) {

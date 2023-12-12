@@ -24,6 +24,7 @@ class _Home_MoviesState extends State<Home_Movies> {
 
   String namaLengkap = '';
   String saldo = '';
+  String imageUrl = '';
 
   void _onNavBarTapped(int index) {
     setState(() {
@@ -59,11 +60,13 @@ class _Home_MoviesState extends State<Home_Movies> {
           // Mengakses data pengguna
           String fetchednamaLengkap = userData['namaLengkap'];
           String fetchedsaldo = userData['saldo'];
+          String fetchedeimage = userData['profile'];
 
           // Mengupdate state untuk memperbarui tampilan
           setState(() {
             namaLengkap = fetchednamaLengkap;
             saldo = fetchedsaldo;
+            imageUrl = fetchedeimage;
           });
         } else {
           print('Dokumen pengguna tidak ditemukan di Firestore.');
@@ -138,6 +141,8 @@ class _Home_MoviesState extends State<Home_Movies> {
                           width: 54,
                           height: 54,
                           decoration: ShapeDecoration(
+                            image: DecorationImage(image: NetworkImage('https://firebasestorage.googleapis.com/v0/b/flutix-9d582.appspot.com/o/images%2Fuser_profile%2F4.png?alt=media&token=c6683eef-5b77-4d50-bed9-078b7d5df281'),
+                            fit: BoxFit.cover),
                             color: Colors.amber,
                             // image: DecorationImage(
                             //   image: NetworkImage(
