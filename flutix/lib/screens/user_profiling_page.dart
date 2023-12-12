@@ -1,3 +1,5 @@
+import 'package:flutix/screens/confir_account_page.dart';
+import 'package:flutix/screens/sign_up.dart';
 import 'package:flutter/material.dart';
 
 class User_Profiling extends StatelessWidget {
@@ -10,12 +12,29 @@ class User_Profiling extends StatelessWidget {
       body: ListView(
         scrollDirection: Axis.vertical,
         children: [
-          SizedBox(height: 53),
-          Column(
+          SizedBox(height: 22),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 22),
+              SizedBox(
+                width: 20,
+              ),
+              GestureDetector(
+                child: Icon(
+                  Icons.keyboard_double_arrow_left_outlined,
+                  color: Color.fromARGB(255, 180, 212, 41),
+                  size: 40,
+                ),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Sign_Up()),
+                  );
+                },
+              ),
+              SizedBox(width: 72),
               Center(
-                child: Text('Create Your\n Account',
+                child: Text('Select Your\n Favourit Genre',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: Colors.white,
@@ -26,15 +45,13 @@ class User_Profiling extends StatelessWidget {
           ),
           SizedBox(height: 19),
           Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  SizedBox(width: 10),
                   Container(
-                    width: 200,
+                    width: 175,
                     height: 80,
                     alignment: AlignmentDirectional.center,
                     margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
@@ -42,7 +59,7 @@ class User_Profiling extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15),
                       ),
-                      color:  Color.fromRGBO(180, 212, 41, 1),
+                      color: Color.fromRGBO(180, 212, 41, 1),
                     ),
                     child: Text(
                       'Horror',
@@ -54,7 +71,7 @@ class User_Profiling extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    width: 200,
+                    width: 175,
                     height: 80,
                     alignment: AlignmentDirectional.center,
                     margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
@@ -80,8 +97,9 @@ class User_Profiling extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  SizedBox(width: 10),
                   Container(
-                    width: 200,
+                    width: 175,
                     height: 80,
                     alignment: AlignmentDirectional.center,
                     margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
@@ -101,7 +119,7 @@ class User_Profiling extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    width: 200,
+                    width: 175,
                     height: 80,
                     alignment: AlignmentDirectional.center,
                     margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
@@ -127,8 +145,9 @@ class User_Profiling extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  SizedBox(width: 10),
                   Container(
-                    width: 200,
+                    width: 175,
                     height: 80,
                     alignment: AlignmentDirectional.center,
                     margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
@@ -148,7 +167,7 @@ class User_Profiling extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    width: 200,
+                    width: 175,
                     height: 80,
                     alignment: AlignmentDirectional.center,
                     margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
@@ -184,11 +203,11 @@ class User_Profiling extends StatelessWidget {
               ),
               SizedBox(height: 30),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  SizedBox(width: 10),
                   Container(
-                    width: 200,
+                    width: 175,
                     height: 80,
                     alignment: AlignmentDirectional.center,
                     margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
@@ -208,7 +227,7 @@ class User_Profiling extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    width: 200,
+                    width: 175,
                     height: 80,
                     alignment: AlignmentDirectional.center,
                     margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
@@ -216,7 +235,7 @@ class User_Profiling extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15),
                       ),
-                      color:  Color.fromRGBO(180, 212, 41, 1),
+                      color: Color.fromRGBO(180, 212, 41, 1),
                     ),
                     child: Text(
                       'English',
@@ -231,11 +250,11 @@ class User_Profiling extends StatelessWidget {
               ),
               SizedBox(height: 22),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  SizedBox(width: 10),
                   Container(
-                    width: 200,
+                    width: 175,
                     height: 80,
                     alignment: AlignmentDirectional.center,
                     margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
@@ -255,7 +274,7 @@ class User_Profiling extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    width: 200,
+                    width: 175,
                     height: 80,
                     alignment: AlignmentDirectional.center,
                     margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
@@ -278,19 +297,47 @@ class User_Profiling extends StatelessWidget {
               ),
             ],
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          SizedBox(height: 30),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SizedBox(height: 49),
               Container(
-                margin: EdgeInsets.only(left: 35),
-                child: Text('Continue to Sign Up',
-                    textAlign: TextAlign.center,
+                padding: EdgeInsets.only(left: 20),
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Sign_Up()),
+                    );
+                  },
+                  child: Text(
+                    "Continue to Sign Up",
                     style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontFamily: 'Poppins')),
+                      color: Color.fromRGBO(177, 177, 177, 1),
+                      fontSize: 15,
+                    ),
+                  ),
+                ),
               ),
+              Container(
+                  margin: EdgeInsets.only(right: 56),
+                  width: 58,
+                  height: 58,
+                  decoration: ShapeDecoration(
+                    color: Color.fromARGB(255, 180, 212, 41),
+                    shape: OvalBorder(),
+                  ),
+                  child: IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ConfirAccount()),
+                        );
+                      },
+                      icon: Icon(
+                        Icons.keyboard_double_arrow_right_outlined,
+                      )))
             ],
           ),
         ],
