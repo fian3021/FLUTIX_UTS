@@ -30,7 +30,7 @@ class ConfirAccount extends StatelessWidget {
                   );
                 },
               ),
-               SizedBox(width: 63),
+              SizedBox(width: 63),
               Center(
                 child: Text('Confirm\n New Account',
                     textAlign: TextAlign.center,
@@ -56,6 +56,10 @@ class ConfirAccount extends StatelessWidget {
                       color: Color.fromRGBO(177, 177, 177, 1),
                       borderRadius: BorderRadius.circular(10.0),
                     ),
+                    // child: Image.asset(
+                    //   'assets/your_image_file.png', // Gantilah dengan path gambar Anda
+                    //   fit: BoxFit.cover, // Sesuaikan sesuai kebutuhan
+                    // ),
                   ),
                 ),
               ],
