@@ -1,3 +1,5 @@
+import 'package:flutix/model/wallet.dart';
+import 'package:flutix/screens/success_topup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
@@ -15,11 +17,12 @@ class _Wallet_TopupState extends State<Wallet_Topup> {
       NumberFormat.currency(locale: 'id_ID', symbol: 'Rp.');
   final numberFormatter = NumberFormat.decimalPattern('id_ID');
   int selectedButtonIndex = -1;
-  double availableBalance = 280000.0;
+  // double availableBalance = 280000.0;
 
   @override
   Widget build(BuildContext context) {
-    var lebar = MediaQuery.of(context).size.width;
+    final walletProvider = WalletProvider.of(context);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(54, 53, 56, 1),
@@ -100,8 +103,6 @@ class _Wallet_TopupState extends State<Wallet_Topup> {
                   borderSide: BorderSide(width: 1, color: Color(0xFFB4D429)),
                   borderRadius: BorderRadius.circular(6),
                 ),
-                // floatingLabelBehavior: FloatingLabelBehavior
-                //     .always, // agar prefix text tetap terlihat walaupun belum dalam kondisi fokus ke textfield
               ),
             ),
             SizedBox(height: 13.0),
@@ -119,7 +120,7 @@ class _Wallet_TopupState extends State<Wallet_Topup> {
                   ),
                 ),
                 Text(
-                  'Rp. 280.000',
+                  'Rp.${walletProvider.saldo.toString()}',
                   textAlign: TextAlign.right,
                   style: TextStyle(
                     color: Color(0xFFB4D429),
@@ -174,16 +175,24 @@ class _Wallet_TopupState extends State<Wallet_Topup> {
             Center(
               child: ElevatedButton(
                 onPressed: () {
-                  // if (selectedButtonIndex != -1) {
-                  //   print('Top Up Now dengan nominal: Rp.${[
-                  //     10000,
-                  //     50000,
-                  //     100000,
-                  //     200000,
-                  //     250000,
-                  //     500000
-                  //   ][selectedButtonIndex]}');
-                  // }
+                  final String nominalText = _NominalController.text.trim();
+                  if (nominalText.isEmpty) {
+                    showEmptyTextFieldWarning();
+                  } else {
+                    final double nominal = double.parse(
+                        _NominalController.text.replaceAll('.', ''));
+                    if (nominal >= 10000) {
+                      walletProvider.topUp(nominal);
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Success_Topup(),
+                        ),
+                      );
+                    } else {
+                      showMinimumTopUpWarning();
+                    }
+                  }
                 },
                 style: ElevatedButton.styleFrom(
                   primary: Color(0xFFB4D429),
@@ -214,12 +223,9 @@ class _Wallet_TopupState extends State<Wallet_Topup> {
   }
 
   Widget buildElevatedButton(String text, int index) {
-    var lebar = MediaQuery.of(context).size.width;
     return ElevatedButton(
       onPressed: () {
-        setState(() {
-          selectedButtonIndex = index;
-        });
+        setNominalAndColor(text, index);
       },
       style: ElevatedButton.styleFrom(
         primary: selectedButtonIndex == index
@@ -245,5 +251,39 @@ class _Wallet_TopupState extends State<Wallet_Topup> {
         ),
       ),
     );
+  }
+
+  void showMinimumTopUpWarning() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          'Minimum Top Up Amount is Rp10.000',
+          style: TextStyle(fontSize: 16),
+        ),
+        backgroundColor: Colors.red,
+        duration: Duration(seconds: 3),
+      ),
+    );
+  }
+
+  void showEmptyTextFieldWarning() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          'Please Enter the Top Up Amount',
+          style: TextStyle(fontSize: 16),
+        ),
+        backgroundColor: Colors.red,
+        duration: Duration(seconds: 3),
+      ),
+    );
+  }
+
+  void setNominalAndColor(String text, int index) {
+    setState(() {
+      selectedButtonIndex = index;
+      _NominalController.text = text.split('\n')[
+          1]; // Mengambil nilai dari baris kedua (setelah '\n') di dalam teks tombol
+    });
   }
 }
