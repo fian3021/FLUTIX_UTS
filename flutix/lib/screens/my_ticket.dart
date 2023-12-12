@@ -1,4 +1,3 @@
-import 'package:flutix/widgets/back.dart';
 import 'package:flutter/material.dart';
 
 class MyTickets extends StatefulWidget {
@@ -19,21 +18,19 @@ class _MyTicketsState extends State<MyTickets> {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 54, 53, 56),
       appBar: AppBar(
-        leading: Arrow_Back(),
         backgroundColor: Color.fromARGB(255, 54, 53, 56),
-        title: Padding(
-          padding: const EdgeInsets.only(left: 70),
+        title: Center(
           child: const Text(
-              'My Tickets',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 21,
-                fontFamily: 'Poppins',
-                fontWeight: FontWeight.w400,
-                height: 0,
-              ),
+            'My Tickets',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 21,
+              fontFamily: 'Poppins',
+              fontWeight: FontWeight.w400,
+              height: 0,
             ),
+          ),
         ),
         // title: SizedBox(
         //   width: 5,
@@ -71,10 +68,12 @@ class _MyTicketsState extends State<MyTickets> {
                   ),
                   minimumSize: Size((lebar - 30) / 2, 34),
                 ),
-                child: Text('New',
+                child: Text(
+                  'New',
                   style: TextStyle(
                     color: Color.fromARGB(255, 54, 53, 56),
-                  ),),
+                  ),
+                ),
               ),
             ),
             Positioned(
