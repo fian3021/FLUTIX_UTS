@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutix/model/AUTH.dart';
 import 'package:flutix/screens/edit_profile.dart';
 import 'package:flutix/screens/sign_in.dart';
-import 'package:flutix/screens/splash_screen.dart';
 import 'package:flutix/screens/wallet.dart';
 import 'package:flutter/material.dart';
 import 'package:dotted_line/dotted_line.dart';
@@ -101,7 +100,7 @@ class _ProfileState extends State<Profile> {
                   decoration:  BoxDecoration(
                       image: DecorationImage(
                           image: NetworkImage(imageUrl),
-                          fit: BoxFit.cover)),
+                          fit: BoxFit.fill)),
                   child: Container(
                     width: lebar,
                     height: tinggi,
