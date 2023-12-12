@@ -284,28 +284,189 @@ class _Home_MoviesState extends State<Home_Movies> {
               ),
             ),
             SizedBox(
-              height: 70,
-              width: lebar,
-              child: ListView.builder(
+                height: 95,
+                width: lebar,
+                child: ListView(
                   scrollDirection: Axis.horizontal,
                   physics: const BouncingScrollPhysics(),
-                  itemCount: 10,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: EdgeInsets.all(8.0),
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.all(8),
                       child: Container(
+                        width: 80,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            IconButton(
+                              onPressed: () {
+                                //action coe when button is pressed
+                              },
+                              icon: Icon(Icons.favorite_rounded,
+                                  size: 35, color: Colors.black),
+                            ),
+                            Text(
+                              'Romance',
+                              style: TextStyle(
+                                fontSize: 15,
+                                color: Color.fromARGB(255, 180, 212, 41),
+                              ),
+                            )
+                          ],
+                        ),
                         decoration: ShapeDecoration(
                           color: Color.fromRGBO(94, 93, 96, 1),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
-                        height: 60,
-                        width: 60,
                       ),
-                    );
-                  }),
-            ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(8),
+                      child: Container(
+                        width: 80,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            IconButton(
+                              onPressed: () {
+                                //action coe when button is pressed
+                              },
+                              icon: Icon(Icons.sports_baseball_rounded,
+                                  size: 35, color: Colors.black),
+                            ),
+                            Text(
+                              'Sport',
+                              style: TextStyle(
+                                fontSize: 15,
+                                color: Color.fromARGB(255, 180, 212, 41),
+                              ),
+                            )
+                          ],
+                        ),
+                        decoration: ShapeDecoration(
+                          color: Color.fromRGBO(94, 93, 96, 1),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(8),
+                      child: Container(
+                        width: 80,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            IconButton(
+                              onPressed: () {
+                                //action coe when button is pressed
+                              },
+                              icon: Icon(Icons.castle_rounded,
+                                  size: 35, color: Colors.black),
+                            ),
+                            Text(
+                              'Fantasy',
+                              style: TextStyle(
+                                fontSize: 15,
+                                color: Color.fromARGB(255, 180, 212, 41),
+                              ),
+                            )
+                          ],
+                        ),
+                        decoration: ShapeDecoration(
+                          color: Color.fromRGBO(94, 93, 96, 1),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(8),
+                      child: Container(
+                        width: 80,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            IconButton(
+                              onPressed: () {
+                                //action coe when button is pressed
+                              },
+                              icon: Icon(Icons.anchor_sharp,
+                                  size: 35, color: Colors.black),
+                            ),
+                            Text(
+                              'Action',
+                              style: TextStyle(
+                                fontSize: 15,
+                                color: Color.fromARGB(255, 180, 212, 41),
+                              ),
+                            )
+                          ],
+                        ),
+                        decoration: ShapeDecoration(
+                          color: Color.fromRGBO(94, 93, 96, 1),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(8),
+                      child: Container(
+                        width: 80,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            IconButton(
+                              onPressed: () {
+                                //action coe when button is pressed
+                              },
+                              icon: Icon(Icons.toys_rounded,
+                                  size: 35, color: Colors.black),
+                            ),
+                            Text(
+                              'Kids',
+                              style: TextStyle(
+                                fontSize: 15,
+                                color: Color.fromARGB(255, 180, 212, 41),
+                              ),
+                            )
+                          ],
+                        ),
+                        decoration: ShapeDecoration(
+                          color: Color.fromRGBO(94, 93, 96, 1),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                )
+                // ListView.builder(
+                //     scrollDirection: Axis.horizontal,
+                //     physics: const BouncingScrollPhysics(),
+                //     itemCount: 10,
+                //     itemBuilder: (context, index) {
+                //       return Padding(
+                //         padding: EdgeInsets.all(8.0),
+                //         child: Container(
+                //           decoration: ShapeDecoration(
+                //             color: Color.fromRGBO(94, 93, 96, 1),
+                //             shape: RoundedRectangleBorder(
+                //               borderRadius: BorderRadius.circular(10),
+                //             ),
+                //           ),
+                //           height: 60,
+                //           width: 60,
+                //         ),
+                //       );
+                //     }),
+                ),
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 15, 0, 15),
               child: Text(
