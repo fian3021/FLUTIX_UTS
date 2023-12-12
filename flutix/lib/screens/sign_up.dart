@@ -323,10 +323,10 @@ class _Sign_UpState extends State<Sign_Up> {
                 ),
                 SizedBox(height: 49),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Container(
-                      padding: EdgeInsets.only(left: 20),
+                      padding: EdgeInsets.only(right: 20),
                       child: TextButton(
                         onPressed: () {
                           Navigator.push(
