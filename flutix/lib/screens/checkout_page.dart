@@ -286,9 +286,7 @@ class Checkout_Page extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => saldoWallet
-                                        ? Success_Checkout()
-                                        : Success_Topup()),
+                                    builder: (context) => Success_Checkout()),
                               );
                             },
                             icon: Icon(

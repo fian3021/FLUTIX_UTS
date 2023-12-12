@@ -23,7 +23,7 @@ class Movie_Detail extends StatelessWidget {
                 height: 340,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage(movieDetail.picture),
+                    image: AssetImage("assets/" + movieDetail.picture),
                     fit: BoxFit.fill,
                   ),
                 ),
