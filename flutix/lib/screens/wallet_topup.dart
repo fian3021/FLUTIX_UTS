@@ -225,10 +225,7 @@ class _Wallet_TopupState extends State<Wallet_Topup> {
   Widget buildElevatedButton(String text, int index) {
     return ElevatedButton(
       onPressed: () {
-        setState(() {
-          selectedButtonIndex = -1;
-          _NominalController.text = text.replaceAll('Rp. ', '');
-        });
+        setNominalAndColor(text, index);
       },
       style: ElevatedButton.styleFrom(
         primary: selectedButtonIndex == index
@@ -238,12 +235,6 @@ class _Wallet_TopupState extends State<Wallet_Topup> {
           borderRadius: BorderRadius.circular(6),
         ),
       ),
-      // style: ElevatedButton.styleFrom(
-      //   primary: Color(0xFFB1B1B1),
-      //   shape: RoundedRectangleBorder(
-      //     borderRadius: BorderRadius.circular(6),
-      //   ),
-      // ),
       child: Container(
         width: 110,
         height: 71,
@@ -286,5 +277,13 @@ class _Wallet_TopupState extends State<Wallet_Topup> {
         duration: Duration(seconds: 3),
       ),
     );
+  }
+
+  void setNominalAndColor(String text, int index) {
+    setState(() {
+      selectedButtonIndex = index;
+      _NominalController.text = text.split('\n')[
+          1]; // Mengambil nilai dari baris kedua (setelah '\n') di dalam teks tombol
+    });
   }
 }
