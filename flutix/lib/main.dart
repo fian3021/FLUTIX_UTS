@@ -4,6 +4,7 @@ import 'package:flutix/firebase_options.dart';
 import 'package:flutix/model/movie_cooming_list.dart';
 import 'package:flutix/model/movie_list_.dart';
 import 'package:flutix/model/movie_list_play.dart';
+import 'package:flutix/model/wallet.dart';
 import 'package:flutix/screens/splash_screen.dart';
 import 'package:flutix/widgets/app_nav.dart';
 import 'package:flutter/material.dart';
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
             create: (context) => Movie_Cooming_List_Provider()),
         ChangeNotifierProvider(create: (context) => Movie_Data_Provider()),
         ChangeNotifierProvider(create: (context) => Movie_Data_Play_Provider()),
+        ChangeNotifierProvider(create: (_) => WalletProvider()),
       ],
       child: Builder(builder: (context) {
         return MaterialApp(
@@ -45,15 +47,15 @@ class MyApp extends StatelessWidget {
             useMaterial3: true,
           ),
           home: StreamBuilder<User?>(
-        stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return App_Nav();
-          } else {
-            return Splash_Screen();
-          }
-        },
-      ),
+            stream: FirebaseAuth.instance.authStateChanges(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return App_Nav();
+              } else {
+                return Splash_Screen();
+              }
+            },
+          ),
           // home: const Splash_Screen(),
         );
       }),

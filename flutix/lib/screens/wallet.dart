@@ -1,5 +1,9 @@
+import 'package:flutix/model/wallet.dart';
+import 'package:flutix/screens/wallet_topup.dart';
 import 'package:flutter/material.dart';
 import 'package:draggable_home/draggable_home.dart';
+import 'package:provider/provider.dart';
+
 // import 'camera_preview.dart';
 
 class Wallet extends StatelessWidget {
@@ -67,14 +71,13 @@ class Wallet extends StatelessWidget {
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.w400)),
                   onPressed: () {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) {
-                    //       // return Sign_Up();
-                    //     },
-                    //   ),
-                    // );
+                    // Navigasi ke halaman Wallet saat tombol diklik
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Wallet_Topup(),
+                      ),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Color.fromARGB(255, 54, 53, 56),
@@ -148,13 +151,18 @@ class Wallet extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 45),
-              child: Text(
-                "IDR 280.000",
-                style: TextStyle(
-                  color: Color.fromARGB(255, 180, 212, 41),
-                  fontSize: 40,
-                  fontWeight: FontWeight.w700,
-                ),
+              child: Consumer<WalletProvider>(
+                builder: (context, walletProvider, child) {
+                  return Text(
+                    // "IDR ${walletProvider.walletModel.saldo.toString()}",
+                    'Rp.${walletProvider.saldo.toString()}',
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 180, 212, 41),
+                      fontSize: 40,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  );
+                },
               ),
             ),
             Text(
