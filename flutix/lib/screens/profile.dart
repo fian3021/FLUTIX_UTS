@@ -100,7 +100,7 @@ class _ProfileState extends State<Profile> {
                   decoration:  BoxDecoration(
                       image: DecorationImage(
                           image: NetworkImage(imageUrl),
-                          fit: BoxFit.fill)),
+                          fit: BoxFit.cover)),
                   child: Container(
                     width: lebar,
                     height: tinggi,
