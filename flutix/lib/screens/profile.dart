@@ -21,6 +21,7 @@ class _ProfileState extends State<Profile> {
   String namaLengkap = '';
   String saldo = '';
   String email = '';
+  String imageUrl = '';
 
   @override
   void initState() {
@@ -51,12 +52,14 @@ class _ProfileState extends State<Profile> {
           String fetchednamaLengkap = userData['namaLengkap'];
           String fetchedsaldo = userData['saldo'];
           String fetchedemail = userData['email'];
+          String fetchedeimage = userData['profile'];
 
           // Mengupdate state untuk memperbarui tampilan
           setState(() {
             namaLengkap = fetchednamaLengkap;
             saldo = fetchedsaldo;
             email = fetchedemail;
+             imageUrl = fetchedeimage;
           });
         } else {
           print('Dokumen pengguna tidak ditemukan di Firestore.');
@@ -95,9 +98,9 @@ class _ProfileState extends State<Profile> {
                   width: lebar,
                   height: 350,
                   padding: const EdgeInsets.all(0),
-                  decoration: const BoxDecoration(
+                  decoration:  BoxDecoration(
                       image: DecorationImage(
-                          image: AssetImage("assets/saldo.png"),
+                          image: NetworkImage(imageUrl),
                           fit: BoxFit.cover)),
                   child: Container(
                     width: lebar,
@@ -120,9 +123,10 @@ class _ProfileState extends State<Profile> {
                           width: 100,
                           height: 100,
                           decoration: ShapeDecoration(
+                            color: Colors.black,
                             image: DecorationImage(
-                              image: AssetImage("assets/theNun.png"),
-                              fit: BoxFit.fill,
+                              image: NetworkImage(imageUrl),
+                              fit: BoxFit.cover,
                             ),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(14),
