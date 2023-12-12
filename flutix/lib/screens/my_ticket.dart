@@ -1,3 +1,4 @@
+import 'package:flutix/widgets/back.dart';
 import 'package:flutter/material.dart';
 
 class MyTickets extends StatefulWidget {
@@ -16,21 +17,38 @@ class _MyTicketsState extends State<MyTickets> {
     var lebar = MediaQuery.of(context).size.width;
 
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 54, 53, 56),
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(1, 54, 53, 56),
-        title: Center(
-          child: Text(
-            'My Tickets',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 21,
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.w400,
-              height: 0,
+        leading: Arrow_Back(),
+        backgroundColor: Color.fromARGB(255, 54, 53, 56),
+        title: Padding(
+          padding: const EdgeInsets.only(left: 70),
+          child: const Text(
+              'My Tickets',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 21,
+                fontFamily: 'Poppins',
+                fontWeight: FontWeight.w400,
+                height: 0,
+              ),
             ),
-          ),
         ),
+        // title: SizedBox(
+        //   width: 5,
+        //   child: Text(
+        //     'My Tickets',
+        //     textAlign: TextAlign.center,
+        //     style: TextStyle(
+        //       color: Colors.white,
+        //       fontSize: 21,
+        //       fontFamily: 'Poppins',
+        //       fontWeight: FontWeight.w400,
+        //       height: 0,
+        //     ),
+        //   ),
+        // ),
       ),
       body: Center(
         child: Stack(
@@ -45,13 +63,18 @@ class _MyTicketsState extends State<MyTickets> {
                   });
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: isNewButtonSelected ? Colors.green : Colors.grey,
+                  primary: isNewButtonSelected
+                      ? Color.fromARGB(255, 180, 212, 41)
+                      : Color.fromRGBO(125, 125, 126, 1),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
                   minimumSize: Size((lebar - 30) / 2, 34),
                 ),
-                child: Text('New'),
+                child: Text('New',
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 54, 53, 56),
+                  ),),
               ),
             ),
             Positioned(
@@ -64,13 +87,20 @@ class _MyTicketsState extends State<MyTickets> {
                   });
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: isUsedButtonSelected ? Colors.green : Colors.grey,
+                  primary: isUsedButtonSelected
+                      ? Color.fromARGB(255, 180, 212, 41)
+                      : Color.fromRGBO(125, 125, 126, 1),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
                   minimumSize: Size((lebar - 30) / 2, 34),
                 ),
-                child: Text('Used'),
+                child: Text(
+                  'Used',
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 54, 53, 56),
+                  ),
+                ),
               ),
             ),
           ],

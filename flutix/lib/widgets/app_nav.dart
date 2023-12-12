@@ -1,6 +1,6 @@
 import 'package:flutix/screens/home_movies.dart';
+import 'package:flutix/screens/my_ticket.dart';
 import 'package:flutix/screens/profile.dart';
-import 'package:flutix/screens/wallet.dart';
 import 'package:flutter/material.dart';
 // import 'package:carousel_slider/carousel_slider.dart';
 // import 'package:flutix/widgets/app_nav.dart';
@@ -23,7 +23,7 @@ class _App_NavState extends State<App_Nav> {
 
   @override
   Widget build(BuildContext context) {
-    final _listPage = <Widget>[const Home_Movies(), Wallet(), Profile()];
+    final _listPage = <Widget>[const Home_Movies(), MyTickets(), Profile()];
 
     final _bottomNavBarItems = <BottomNavigationBarItem>[
       const BottomNavigationBarItem(
