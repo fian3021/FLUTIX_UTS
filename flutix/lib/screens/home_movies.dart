@@ -366,6 +366,7 @@ class _Home_MoviesState extends State<Home_Movies> {
 AppBar customAppBar() {
   return AppBar(
     backgroundColor: Color(0xFFB4D429),
+    automaticallyImplyLeading: false,
     // centerTitle: true,
     // title: const Text(
     //   'Dashboard',

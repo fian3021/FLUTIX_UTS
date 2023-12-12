@@ -126,9 +126,10 @@ class _Sign_InState extends State<Sign_In> {
                   ),
                   SizedBox(height: 54),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Container(
-                        padding: EdgeInsets.only(left: 20),
+                        padding: EdgeInsets.only(right:20),
                         child: Text(
                           'Countinue to Sign In',
                           style: TextStyle(
