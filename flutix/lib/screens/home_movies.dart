@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutix/model/movie_cooming_list.dart';
 import 'package:flutix/model/movie_list_play.dart';
 import 'package:flutix/screens/movie_detail.dart';
@@ -20,6 +22,9 @@ class _Home_MoviesState extends State<Home_Movies> {
 
   int _selectedTabIndex = 0;
 
+  String namaLengkap = '';
+  String saldo = '';
+
   void _onNavBarTapped(int index) {
     setState(() {
       _selectedTabIndex = index;
@@ -27,6 +32,55 @@ class _Home_MoviesState extends State<Home_Movies> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  Future<void> getData() async {
+    try {
+      // Mendapatkan instance user saat ini dari Firebase Authentication
+      User? user = FirebaseAuth.instance.currentUser;
+
+      // Memeriksa apakah user telah login
+      if (user != null) {
+        // Mendapatkan referensi koleksi pengguna di Firestore
+        CollectionReference users =
+            FirebaseFirestore.instance.collection('users');
+
+        // Mendapatkan dokumen pengguna berdasarkan ID pengguna saat ini
+        DocumentSnapshot userDocument = await users.doc(user.uid).get();
+
+        // Mengekstrak data dari dokumen
+        if (userDocument.exists) {
+          Map<String, dynamic> userData =
+              userDocument.data() as Map<String, dynamic>;
+
+          // Mengakses data pengguna
+          String fetchednamaLengkap = userData['namaLengkap'];
+          String fetchedsaldo = userData['saldo'];
+
+          // Mengupdate state untuk memperbarui tampilan
+          setState(() {
+            namaLengkap = fetchednamaLengkap;
+            saldo = fetchedsaldo;
+          });
+        } else {
+          print('Dokumen pengguna tidak ditemukan di Firestore.');
+        }
+      } else {
+        // Jika pengguna belum login, tetapkan nilai default "Anonymous"
+        setState(() {
+          namaLengkap = 'Anonymous';
+          // username = 'Anonymous';
+          // email = 'No Email';
+        });
+      }
+    } catch (e) {
+      print('Error saat mengambil data pengguna: $e');
+    }
+  }
+
   Widget build(BuildContext context) {
     var lebar = MediaQuery.of(context).size.width;
 
@@ -61,7 +115,103 @@ class _Home_MoviesState extends State<Home_Movies> {
     return Scaffold(
       backgroundColor: Color.fromRGBO(52, 50, 56, 1),
       // bottomNavigationBar: App_Nav(),
-      appBar: customAppBar(),
+      appBar: AppBar(
+        backgroundColor: Color(0xFFB4D429),
+        automaticallyImplyLeading: false,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(20),
+          ),
+        ),
+        bottom: PreferredSize(
+            preferredSize: Size.fromHeight(40.0),
+            child: Container(
+              padding: EdgeInsets.only(left: 30, bottom: 20),
+              child: Row(
+                children: [
+                  Stack(
+                    children: [
+                      Container(
+                        width: 54,
+                        height: 54,
+                        child: Container(
+                          width: 54,
+                          height: 54,
+                          decoration: ShapeDecoration(
+                            color: Colors.amber,
+                            // image: DecorationImage(
+                            //   image: NetworkImage(
+                            //       "https://via.placeholder.com/54x54"),
+                            //   fit: BoxFit.fill,
+                            // ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(14),
+                            ),
+                          ),
+                          child: Container(
+                            width: 50,
+                            height: 50,
+                            decoration: ShapeDecoration(
+                              shape: RoundedRectangleBorder(
+                                side: BorderSide(
+                                    width: 1, color: Color(0xFFB4D429)),
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                      //  Container(
+
+                      //   child: Icon(Icons.person_outline_rounded),
+                      // ),
+                      // Container(
+                      //   height: 30,
+                      //   width: 30,
+                      //   decoration: const BoxDecoration(
+                      //       color: Colors.amber,
+                      //       borderRadius: BorderRadius.all(Radius.circular(20))),
+                      //   child: const Icon(
+                      //     Icons.edit,
+                      //     color: Colors.deepPurple,
+                      //     size: 20,
+                      //   ),
+                      // )
+                    ],
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(left: 20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          namaLengkap,
+                          style: TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white),
+                        ),
+                        Text(
+                          'IDR $saldo',
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: Color.fromRGBO(54, 53, 56, 1),
+                          ),
+                        ),
+                        // Text(
+                        //   '+1 1254 251 241',
+                        //   style: TextStyle(
+                        //     fontSize: 13,
+                        //     color: Colors.white,
+                        //   ),
+                        // ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            )),
+      ),
       // AppBar(
       //   backgroundColor: Color(0xFFB4D429),
       // ),
@@ -361,130 +511,6 @@ class _Home_MoviesState extends State<Home_Movies> {
       ),
     );
   }
-}
-
-AppBar customAppBar() {
-  return AppBar(
-    backgroundColor: Color(0xFFB4D429),
-    automaticallyImplyLeading: false,
-    // centerTitle: true,
-    // title: const Text(
-    //   'Dashboard',
-    //   style: TextStyle(fontSize: 17, color: Colors.white, letterSpacing: 0.53),
-    // ),
-    shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.vertical(
-        bottom: Radius.circular(20),
-      ),
-    ),
-    // leading: InkWell(
-    //   onTap: () {},
-    //   child: const Icon(
-    //     Icons.subject,
-    //     color: Colors.white,
-    //   ),
-    // ),
-    // actions: [
-    //   InkWell(
-    //     onTap: () {},
-    //     child: const Padding(
-    //       padding: EdgeInsets.all(8.0),
-    //       child: Icon(
-    //         Icons.notifications,
-    //         size: 20,
-    //       ),
-    //     ),
-    //   ),
-    // ],
-    bottom: PreferredSize(
-        preferredSize: const Size.fromHeight(40.0),
-        child: Container(
-          padding: const EdgeInsets.only(left: 30, bottom: 20),
-          child: Row(
-            children: [
-              Stack(
-                children: [
-                  Container(
-                    width: 54,
-                    height: 54,
-                    child: Container(
-                      width: 54,
-                      height: 54,
-                      decoration: ShapeDecoration(
-                        color: Colors.amber,
-                        // image: DecorationImage(
-                        //   image: NetworkImage(
-                        //       "https://via.placeholder.com/54x54"),
-                        //   fit: BoxFit.fill,
-                        // ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(14),
-                        ),
-                      ),
-                      child: Container(
-                        width: 50,
-                        height: 50,
-                        decoration: ShapeDecoration(
-                          shape: RoundedRectangleBorder(
-                            side:
-                                BorderSide(width: 1, color: Color(0xFFB4D429)),
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                        ),
-                      ),
-                    ),
-                  )
-                  //  Container(
-
-                  //   child: Icon(Icons.person_outline_rounded),
-                  // ),
-                  // Container(
-                  //   height: 30,
-                  //   width: 30,
-                  //   decoration: const BoxDecoration(
-                  //       color: Colors.amber,
-                  //       borderRadius: BorderRadius.all(Radius.circular(20))),
-                  //   child: const Icon(
-                  //     Icons.edit,
-                  //     color: Colors.deepPurple,
-                  //     size: 20,
-                  //   ),
-                  // )
-                ],
-              ),
-              Container(
-                margin: const EdgeInsets.only(left: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text(
-                      'Angga Risky',
-                      style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.white),
-                    ),
-                    Text(
-                      'IDR 280.000',
-                      style: TextStyle(
-                        fontSize: 13,
-                        color: Color.fromRGBO(54, 53, 56, 1),
-                      ),
-                    ),
-                    // Text(
-                    //   '+1 1254 251 241',
-                    //   style: TextStyle(
-                    //     fontSize: 13,
-                    //     color: Colors.white,
-                    //   ),
-                    // ),
-                  ],
-                ),
-              )
-            ],
-          ),
-        )),
-  );
 }
 
 class Play_Movie extends StatelessWidget {

@@ -11,6 +11,7 @@ class DatabaseService {
     String email,
     String password,
     String profile,
+    String saldo,
     // String profileImageUrl,
   ) async {
     return await userCollection.doc(uid).set({
@@ -19,6 +20,7 @@ class DatabaseService {
       'email': email,
       'password': password,
       'profile': profile,
+      'saldo' : '0',
       // 'profileImageUrl': profileImageUrl,
     });
   }

@@ -20,6 +20,7 @@ class _Sign_UpState extends State<Sign_Up> {
   final _formKey = GlobalKey<FormState>();
 
   String imageUrl = "";
+  String saldo = "";
 
   // var userCollection = FirebaseFirestore.instance.collection('user');
   // var user = FirebaseAuth.instance.currentUser;
@@ -317,7 +318,8 @@ class _Sign_UpState extends State<Sign_Up> {
                                       nameController.value.text,
                                       eemailController.value.text,
                                       paswordController.value.text,
-                                      imageUrl);
+                                      imageUrl,
+                                      saldo);
                                 } catch (e) {
                                   print(e);
                                 }

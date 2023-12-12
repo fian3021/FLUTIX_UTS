@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutix/model/AUTH.dart';
 import 'package:flutix/screens/edit_profile.dart';
 import 'package:flutix/screens/sign_in.dart';
@@ -8,10 +10,70 @@ import 'package:dotted_line/dotted_line.dart';
 // import 'package:flutix/widgets/app_nav.dart';
 // import 'package:flutix/widgets/app_nav.dart';
 
-class Profile extends StatelessWidget {
+class Profile extends StatefulWidget {
   const Profile({super.key});
 
   @override
+  State<Profile> createState() => _ProfileState();
+}
+
+class _ProfileState extends State<Profile> {
+  String namaLengkap = '';
+  String saldo = '';
+  String email = '';
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  Future<void> getData() async {
+    try {
+      // Mendapatkan instance user saat ini dari Firebase Authentication
+      User? user = FirebaseAuth.instance.currentUser;
+
+      // Memeriksa apakah user telah login
+      if (user != null) {
+        // Mendapatkan referensi koleksi pengguna di Firestore
+        CollectionReference users =
+            FirebaseFirestore.instance.collection('users');
+
+        // Mendapatkan dokumen pengguna berdasarkan ID pengguna saat ini
+        DocumentSnapshot userDocument = await users.doc(user.uid).get();
+
+        // Mengekstrak data dari dokumen
+        if (userDocument.exists) {
+          Map<String, dynamic> userData =
+              userDocument.data() as Map<String, dynamic>;
+
+          // Mengakses data pengguna
+          String fetchednamaLengkap = userData['namaLengkap'];
+          String fetchedsaldo = userData['saldo'];
+          String fetchedemail = userData['email'];
+
+          // Mengupdate state untuk memperbarui tampilan
+          setState(() {
+            namaLengkap = fetchednamaLengkap;
+            saldo = fetchedsaldo;
+            email = fetchedemail;
+          });
+        } else {
+          print('Dokumen pengguna tidak ditemukan di Firestore.');
+        }
+      } else {
+        // Jika pengguna belum login, tetapkan nilai default "Anonymous"
+        setState(() {
+          namaLengkap = 'Anonymous';
+          // username = 'Anonymous';
+          // email = 'No Email';
+        });
+      }
+    } catch (e) {
+      print('Error saat mengambil data pengguna: $e');
+    }
+  }
+
   Widget build(BuildContext context) {
     var lebar = MediaQuery.of(context).size.width;
     var tinggi = MediaQuery.of(context).size.height;
@@ -71,7 +133,7 @@ class Profile extends StatelessWidget {
                           height: 10,
                         ),
                         Text(
-                          'Angga Risky',
+                          namaLengkap,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Colors.white,
@@ -83,7 +145,7 @@ class Profile extends StatelessWidget {
                           height: 5,
                         ),
                         Text(
-                          'anggavone@bwa.com',
+                          email,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Colors.white,
@@ -147,7 +209,7 @@ class Profile extends StatelessWidget {
                                       ),
                                     ),
                                     Text(
-                                      'IDR 280.000',
+                                      'IDR $saldo',
                                       style: TextStyle(
                                         color:
                                             Color.fromARGB(255, 180, 212, 41),
@@ -289,14 +351,19 @@ class Profile extends StatelessWidget {
                       ),
                     ),
                     ListTile(
-                      leading: Icon(Icons.logout,size: 30,
-                      color: Color.fromARGB(255, 180, 212, 41),),
-                      title: Text('Keluar',
-                          style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w400,
-                      ),),
+                      leading: Icon(
+                        Icons.logout,
+                        size: 30,
+                        color: Color.fromARGB(255, 180, 212, 41),
+                      ),
+                      title: Text(
+                        'Keluar',
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
                       onTap: () async {
                         // Call the signOut method from your AuthService
                         await AuthService().signOut();
@@ -304,8 +371,7 @@ class Profile extends StatelessWidget {
                         // Navigate back to the login or home screen (depending on your app flow)
                         Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => Sign_In()),
+                          MaterialPageRoute(builder: (context) => Sign_In()),
                         );
                       },
                     ),
