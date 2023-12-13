@@ -12,6 +12,7 @@ class Select_Place_Date extends StatefulWidget {
 
 class _Select_Place_DateState extends State<Select_Place_Date> {
   int selectedDate = 0;
+  int selectedPlace = 0;
   int selectedTime = 0;
 
   String getDayOfWeek(int dayIndex) {
@@ -25,6 +26,21 @@ class _Select_Place_DateState extends State<Select_Place_Date> {
       "Saturday"
     ];
     return daysOfWeek[(dayIndex - 1) % 8];
+  }
+
+  String getPlace(int placeIndex) {
+    List<String> place = [
+      "XXI Big Mall Samarinda",
+      "XXI Samarinda Square",
+      "CJ Cinemas CGV Samarinda",
+      "CGV Plaza Mulia Samarinda"
+    ];
+    return place[(placeIndex - 1) % 5];
+  }
+
+  String getTime(int timeIndex) {
+    List<String> time = ["13.50", "15.00", "17.20", "18.30", "20.10"];
+    return time[(timeIndex - 1) % 6];
   }
 
   @override
@@ -109,422 +125,119 @@ class _Select_Place_DateState extends State<Select_Place_Date> {
             //     children: [],
             //   ),
             // ),
+
             SizedBox(
               width: lebar,
-              height: 60,
+              height: 50,
               child: Center(
                 child: Text(
-                  "XXI Big Mall Samarinda",
+                  "Select Place",
                   style: TextStyle(color: Colors.white, fontSize: 18),
                 ),
               ),
             ),
             SizedBox(
               width: lebar,
-              height: 35,
+              height: 280,
               child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  Container(
-                    width: 90,
-                    height: 35,
-                    margin: EdgeInsets.fromLTRB(30, 0, 10, 0),
-                    decoration: BoxDecoration(
-                        color: Color.fromRGBO(177, 177, 177, 1),
-                        borderRadius: BorderRadius.circular(5)),
-                    child: Center(
+                scrollDirection: Axis.vertical,
+                children: List.generate(4, (index) {
+                  return GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        selectedPlace = index;
+                      });
+                    },
+                    child: Container(
+                      width: lebar,
+                      height: 50,
+                      margin: EdgeInsets.fromLTRB(30, 10, 30, 10),
+                      decoration: BoxDecoration(
+                        color: selectedPlace == index
+                            ? Color.fromRGBO(180, 212, 41, 1) // Selected color
+                            : Color.fromRGBO(177, 177, 177, 1), // Default color
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Center(
                         child: Text(
-                      "10.00",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromRGBO(54, 53, 56, 1)),
-                    )),
-                  ),
-                  Container(
-                    width: 90,
-                    height: 35,
-                    margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                    decoration: BoxDecoration(
-                        color: Color.fromRGBO(177, 177, 177, 1),
-                        borderRadius: BorderRadius.circular(5)),
-                    child: Center(
-                        child: Text(
-                      "12.00",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromRGBO(54, 53, 56, 1)),
-                    )),
-                  ),
-                  Container(
-                    width: 90,
-                    height: 35,
-                    margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                    decoration: BoxDecoration(
-                        color: Color.fromRGBO(177, 177, 177, 1),
-                        borderRadius: BorderRadius.circular(5)),
-                    child: Center(
-                        child: Text(
-                      "18.00",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromRGBO(54, 53, 56, 1)),
-                    )),
-                  ),
-                  Container(
-                    width: 90,
-                    height: 35,
-                    margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                    decoration: BoxDecoration(
-                        color: Color.fromRGBO(180, 212, 41, 1),
-                        borderRadius: BorderRadius.circular(5)),
-                    child: Center(
-                        child: Text(
-                      "20.15",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromRGBO(54, 53, 56, 1)),
-                    )),
-                  ),
-                  Container(
-                    width: 90,
-                    height: 35,
-                    margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                    decoration: BoxDecoration(
-                        color: Color.fromRGBO(177, 177, 177, 1),
-                        borderRadius: BorderRadius.circular(5)),
-                    child: Center(
-                        child: Text(
-                      "20.45",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromRGBO(54, 53, 56, 1)),
-                    )),
-                  ),
-                ],
+                          getPlace(index + 1),
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromRGBO(54, 53, 56, 1),
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                }),
               ),
             ),
+
+            SizedBox(
+              height: 15,
+            ),
+
             SizedBox(
               width: lebar,
-              height: 60,
+              height: 50,
               child: Center(
                 child: Text(
-                  "XXI Samarinda Square",
+                  "Select Time",
                   style: TextStyle(color: Colors.white, fontSize: 18),
                 ),
               ),
             ),
             SizedBox(
               width: lebar,
-              height: 35,
+              height: 40,
               child: ListView(
                 scrollDirection: Axis.horizontal,
-                children: [
-                  Container(
-                    width: 90,
-                    height: 35,
-                    margin: EdgeInsets.fromLTRB(30, 0, 10, 0),
-                    decoration: BoxDecoration(
-                        color: Color.fromRGBO(177, 177, 177, 1),
-                        borderRadius: BorderRadius.circular(5)),
-                    child: Center(
-                        child: Text(
-                      "10.00",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromRGBO(54, 53, 56, 1)),
-                    )),
-                  ),
-                  Container(
-                    width: 90,
-                    height: 35,
-                    margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                    decoration: BoxDecoration(
-                        color: Color.fromRGBO(177, 177, 177, 1),
-                        borderRadius: BorderRadius.circular(5)),
-                    child: Center(
-                        child: Text(
-                      "12.00",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromRGBO(54, 53, 56, 1)),
-                    )),
-                  ),
-                  Container(
-                    width: 90,
-                    height: 35,
-                    margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                    decoration: BoxDecoration(
-                        color: Color.fromRGBO(177, 177, 177, 1),
-                        borderRadius: BorderRadius.circular(5)),
-                    child: Center(
-                        child: Text(
-                      "16.15",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromRGBO(54, 53, 56, 1)),
-                    )),
-                  ),
-                  Container(
-                    width: 90,
-                    height: 35,
-                    margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                    decoration: BoxDecoration(
-                        color: Color.fromRGBO(177, 177, 177, 1),
-                        borderRadius: BorderRadius.circular(5)),
-                    child: Center(
-                        child: Text(
-                      "19.00",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromRGBO(54, 53, 56, 1)),
-                    )),
-                  ),
-                  Container(
-                    width: 90,
-                    height: 35,
-                    margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                    decoration: BoxDecoration(
-                        color: Color.fromRGBO(177, 177, 177, 1),
-                        borderRadius: BorderRadius.circular(5)),
-                    child: Center(
-                        child: Text(
-                      "21.00",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromRGBO(54, 53, 56, 1)),
-                    )),
-                  ),
-                ],
+                children: List.generate(5, (index) {
+                  return GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        selectedTime = index;
+                      });
+                    },
+                    child: Container(
+                      width: 90,
+                      height: 40,
+                      margin: EdgeInsets.fromLTRB(
+                        index == 0 ? 30 : 8,
+                        10,
+                        index == 4 ? 30 : 8,
+                        0,
+                      ),
+                      decoration: BoxDecoration(
+                        color: selectedTime == index
+                            ? Color.fromRGBO(180, 212, 41, 1) // Selected color
+                            : Color.fromRGBO(177, 177, 177, 1), // Default color
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Center(
+                            child: Text(
+                              getTime(index + 1),
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromRGBO(54, 53, 56, 1),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                }),
               ),
             ),
-            SizedBox(
-              width: lebar,
-              height: 60,
-              child: Center(
-                child: Text(
-                  "CJ Cinemas CGV Samarinda",
-                  style: TextStyle(color: Colors.white, fontSize: 18),
-                ),
-              ),
-            ),
-            SizedBox(
-              width: lebar,
-              height: 35,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  Container(
-                    width: 90,
-                    height: 35,
-                    margin: EdgeInsets.fromLTRB(30, 0, 10, 0),
-                    decoration: BoxDecoration(
-                        color: Color.fromRGBO(177, 177, 177, 1),
-                        borderRadius: BorderRadius.circular(5)),
-                    child: Center(
-                        child: Text(
-                      "09.00",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromRGBO(54, 53, 56, 1)),
-                    )),
-                  ),
-                  Container(
-                    width: 90,
-                    height: 35,
-                    margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                    decoration: BoxDecoration(
-                        color: Color.fromRGBO(177, 177, 177, 1),
-                        borderRadius: BorderRadius.circular(5)),
-                    child: Center(
-                        child: Text(
-                      "11.20",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromRGBO(54, 53, 56, 1)),
-                    )),
-                  ),
-                  Container(
-                    width: 90,
-                    height: 35,
-                    margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                    decoration: BoxDecoration(
-                        color: Color.fromRGBO(177, 177, 177, 1),
-                        borderRadius: BorderRadius.circular(5)),
-                    child: Center(
-                        child: Text(
-                      "14.40",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromRGBO(54, 53, 56, 1)),
-                    )),
-                  ),
-                  Container(
-                    width: 90,
-                    height: 35,
-                    margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                    decoration: BoxDecoration(
-                        color: Color.fromRGBO(177, 177, 177, 1),
-                        borderRadius: BorderRadius.circular(5)),
-                    child: Center(
-                        child: Text(
-                      "17.00",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromRGBO(54, 53, 56, 1)),
-                    )),
-                  ),
-                  Container(
-                    width: 90,
-                    height: 35,
-                    margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                    decoration: BoxDecoration(
-                        color: Color.fromRGBO(177, 177, 177, 1),
-                        borderRadius: BorderRadius.circular(5)),
-                    child: Center(
-                        child: Text(
-                      "20.10",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromRGBO(54, 53, 56, 1)),
-                    )),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              width: lebar,
-              height: 60,
-              child: Center(
-                child: Text(
-                  "CGV Plaza Mulia Samarinda",
-                  style: TextStyle(color: Colors.white, fontSize: 18),
-                ),
-              ),
-            ),
-            SizedBox(
-              width: lebar,
-              height: 35,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  Container(
-                    width: 90,
-                    height: 35,
-                    margin: EdgeInsets.fromLTRB(30, 0, 10, 0),
-                    decoration: BoxDecoration(
-                        color: Color.fromRGBO(177, 177, 177, 1),
-                        borderRadius: BorderRadius.circular(5)),
-                    child: Center(
-                        child: Text(
-                      "10.30",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromRGBO(54, 53, 56, 1)),
-                    )),
-                  ),
-                  Container(
-                    width: 90,
-                    height: 35,
-                    margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                    decoration: BoxDecoration(
-                        color: Color.fromRGBO(177, 177, 177, 1),
-                        borderRadius: BorderRadius.circular(5)),
-                    child: Center(
-                        child: Text(
-                      "12.00",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromRGBO(54, 53, 56, 1)),
-                    )),
-                  ),
-                  Container(
-                    width: 90,
-                    height: 35,
-                    margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                    decoration: BoxDecoration(
-                        color: Color.fromRGBO(177, 177, 177, 1),
-                        borderRadius: BorderRadius.circular(5)),
-                    child: Center(
-                        child: Text(
-                      "15.30",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromRGBO(54, 53, 56, 1)),
-                    )),
-                  ),
-                  Container(
-                    width: 90,
-                    height: 35,
-                    margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                    decoration: BoxDecoration(
-                        color: Color.fromRGBO(177, 177, 177, 1),
-                        borderRadius: BorderRadius.circular(5)),
-                    child: Center(
-                        child: Text(
-                      "17.00",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromRGBO(54, 53, 56, 1)),
-                    )),
-                  ),
-                  Container(
-                    width: 90,
-                    height: 35,
-                    margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                    decoration: BoxDecoration(
-                        color: Color.fromRGBO(177, 177, 177, 1),
-                        borderRadius: BorderRadius.circular(5)),
-                    child: Center(
-                        child: Text(
-                      "19.45",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromRGBO(54, 53, 56, 1)),
-                    )),
-                  ),
-                ],
-              ),
-            ),
+
             SizedBox(
               height: 60,
             ),

@@ -973,10 +973,10 @@ class Select_Seat extends StatelessWidget {
                 height: 22,
                 margin: EdgeInsets.fromLTRB(20, 0, 5, 0),
                 decoration: BoxDecoration(
-                  color: Color.fromRGBO(177, 177, 177, 1),
+                  color: Color.fromRGBO(54, 53, 56, 1), // Warna border
                   border: Border.all(
-                    color: Color.fromRGBO(177, 177, 177, 1), // Warna border
                     width: 2, // Lebar border
+                    color: Color.fromRGBO(177, 177, 177, 1),
                   ),
                 ),
               ),
@@ -1048,20 +1048,23 @@ class Select_Seat extends StatelessWidget {
 class CurvePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
+    //buat kuas untuk gambar kurva
     final Paint paint = Paint()
-      ..color = Color.fromRGBO(180, 212, 41, 1)
-      ..strokeWidth = 3.0
-      ..style = PaintingStyle.stroke;
+      ..color = Color.fromRGBO(180, 212, 41, 1) //warna
+      ..strokeWidth = 3.0 //tebal garis
+      ..style = PaintingStyle.stroke; //hanya garis
 
+    //path untuk gambar dari  titik awal sampai akhir kurva
     final Path path = Path()
-      ..moveTo(70, 50) //titik awal
-      ..quadraticBezierTo(size.width / 2, 0, size.width - 70, 50);
+      ..moveTo(30, 50) //titik awal
+      ..quadraticBezierTo(size.width / 2, 0, size.width - 30, 50);
 
+    //menggambar path ke canvas
     canvas.drawPath(path, paint);
   }
 
   @override
   bool shouldRepaint(CustomPainter oldDelegate) {
-    return false;
+    return false; // Tidak perlu menggambar ulang karena tidak ada perubahan
   }
 }
