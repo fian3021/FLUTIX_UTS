@@ -20,7 +20,7 @@ class _Sign_UpState extends State<Sign_Up> {
 
 // deklarasi untuk menyimpan 
   String imageUrl = "";
-  String saldo = "";
+  // String saldo = "";
 
   // var userCollection = FirebaseFirestore.instance.collection('user');
   // var user = FirebaseAuth.instance.currentUser;
@@ -412,8 +412,8 @@ class _Sign_UpState extends State<Sign_Up> {
                                       nameController.value.text,
                                       eemailController.value.text,
                                       paswordController.value.text,
-                                      imageUrl,
-                                      saldo);
+                                      imageUrl
+                                      );
                                 } catch (e) {
                                   print(e);
                                 }
