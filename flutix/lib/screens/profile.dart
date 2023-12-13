@@ -206,7 +206,7 @@ class _ProfileState extends State<Profile> {
                                 Column(
                                   children: [
                                     Text(
-                                      'My Saldo',
+                                      'Available Balance',
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 18,
@@ -377,21 +377,8 @@ class _ProfileState extends State<Profile> {
                         ),
                       ),
                     ),
-                    ListTile(
-                      leading: Icon(
-                        Icons.logout,
-                        size: 30,
-                        color: Color.fromARGB(255, 180, 212, 41),
-                      ),
-                      title: Text(
-                        'Keluar',
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      onTap: () async {
+                    TextButton.icon(
+                      onPressed: () async {
                         // Call the signOut method from your AuthService
                         await AuthService().signOut();
 
@@ -401,7 +388,45 @@ class _ProfileState extends State<Profile> {
                           MaterialPageRoute(builder: (context) => Sign_In()),
                         );
                       },
+                      icon: Icon(
+                        Icons.logout_rounded,
+                        size: 30,
+                        color: Color.fromARGB(255, 180, 212, 41),
+                      ),
+                      label: Text(
+                        "Logout",
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
                     ),
+                    // ListTile(
+                    //   leading: Icon(
+                    //     Icons.logout,
+                    //     size: 30,
+                    //     color: Color.fromARGB(255, 180, 212, 41),
+                    //   ),
+                    //   title: Text(
+                    //     'Keluar',
+                    //     style: TextStyle(
+                    //       fontSize: 18,
+                    //       color: Colors.white,
+                    //       fontWeight: FontWeight.w400,
+                    //     ),
+                    //   ),
+                    //   onTap: () async {
+                    //     // Call the signOut method from your AuthService
+                    //     await AuthService().signOut();
+
+                    //     // Navigate back to the login or home screen (depending on your app flow)
+                    //     Navigator.pushReplacement(
+                    //       context,
+                    //       MaterialPageRoute(builder: (context) => Sign_In()),
+                    //     );
+                    //   },
+                    // ),
                   ],
                 ),
               ],
