@@ -1,6 +1,5 @@
 import 'package:flutix/screens/confir_account_page.dart';
 import 'package:flutix/screens/sign_up.dart';
-import 'package:flutix/widgets/back.dart';
 import 'package:flutter/material.dart';
 
 class User_Profiling extends StatefulWidget {
@@ -15,6 +14,7 @@ class _User_ProfilingState extends State<User_Profiling> {
   int selectedGenre = 0;
   int selectedLanguage = 0;
 
+// list untuk menampung isi button 
   String getGenre(int genreIndex) {
     List<String> genre = ["Horor", "Music", "Action", "Drama", "War", "Crime"];
     return genre[(genreIndex - 1) % 7];
@@ -32,9 +32,8 @@ class _User_ProfilingState extends State<User_Profiling> {
     return Scaffold(
       backgroundColor: Color.fromRGBO(54, 53, 56, 1),
       appBar: AppBar(
-        leading: Arrow_Back(),
-        title: Padding(
-          padding: EdgeInsets.only(left: 60),
+        // leading: Arrow_Back(),
+        title: Center(
           child: Text('Select Your\nFavourit Genre',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 20, color: Colors.white)),
@@ -48,12 +47,11 @@ class _User_ProfilingState extends State<User_Profiling> {
             width: lebar,
             height: 340,
             margin: EdgeInsets.fromLTRB(30, 20, 30, 20),
-            padding: EdgeInsets.only(left: 15),
-            child: GridView.builder(
+            child: GridView.builder( // menampilkan elemen genre yg dpt di gulir secra horizontal
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3, // Jumlah kolom
                 crossAxisSpacing: 20, // Jarak antar kolom
-                mainAxisSpacing: 40, // Jarak antar baris
+                mainAxisSpacing: 30, // Jarak antar baris
                 mainAxisExtent: lebar / 3,
               ),
               scrollDirection: Axis.horizontal,
@@ -106,12 +104,11 @@ class _User_ProfilingState extends State<User_Profiling> {
             width: lebar,
             height: 200,
             margin: EdgeInsets.fromLTRB(30, 20, 30, 20),
-            padding: EdgeInsets.only(left: 15),
             child: GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2, // Jumlah kolom
                 crossAxisSpacing: 20, // Jarak antar kolom
-                mainAxisSpacing: 40, // Jarak antar baris
+                mainAxisSpacing: 30, // Jarak antar baris
                 mainAxisExtent: lebar / 3,
               ),
               scrollDirection: Axis.horizontal,
@@ -120,7 +117,7 @@ class _User_ProfilingState extends State<User_Profiling> {
                 return GestureDetector(
                   onTap: () {
                     setState(() {
-                      selectedLanguage = index;
+                      selectedLanguage = index; // terpilih
                     });
                   },
                   child: Container(
@@ -134,7 +131,7 @@ class _User_ProfilingState extends State<User_Profiling> {
                       borderRadius: BorderRadius.circular(5),
                     ),
                     child: Text(
-                      getLanguage(index + 1),
+                      getGenre(index + 1), // menampilkan teks
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 18,
@@ -152,7 +149,7 @@ class _User_ProfilingState extends State<User_Profiling> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                padding: EdgeInsets.only(left: 30),
+                padding: EdgeInsets.only(left: 20),
                 child: TextButton(
                   onPressed: () {
                     Navigator.push(
@@ -170,7 +167,7 @@ class _User_ProfilingState extends State<User_Profiling> {
                 ),
               ),
               Container(
-                  margin: EdgeInsets.only(right: 40),
+                  margin: EdgeInsets.only(right: 56),
                   width: 58,
                   height: 58,
                   decoration: ShapeDecoration(
@@ -190,7 +187,6 @@ class _User_ProfilingState extends State<User_Profiling> {
                       )))
             ],
           ),
-          SizedBox(height: 30),
         ],
       ),
     );
