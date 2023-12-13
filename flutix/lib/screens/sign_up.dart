@@ -19,6 +19,7 @@ class _Sign_UpState extends State<Sign_Up> {
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
 
+// deklarasi untuk menyimpan 
   String imageUrl = "";
   String saldo = "";
 
@@ -26,30 +27,31 @@ class _Sign_UpState extends State<Sign_Up> {
   // var user = FirebaseAuth.instance.currentUser;
   // var userID = FirebaseAuth.instance.currentUser!.uid;
 
-  final ImagePicker _imagePicker = ImagePicker();
-  final FirebaseStorage _storage = FirebaseStorage.instance;
+  final ImagePicker _imagePicker = ImagePicker(); // untuk memilih gambar 
+  final FirebaseStorage _storage = FirebaseStorage.instance; // firebase
   TextEditingController nameController = TextEditingController();
   TextEditingController eemailController = TextEditingController();
   TextEditingController paswordController = TextEditingController();
   TextEditingController confirpwController = TextEditingController();
 
   File? _image;
-
+// memilih gambar dan mengunggah ke firebase
   Future<void> _pickAndUploadImage() async {
     
     try {
+      // untuk memilih gambar dari galeri
       final pickedFile =
           await _imagePicker.pickImage(source: ImageSource.gallery);
-      if (pickedFile != null) {
-        setState(() {
+      if (pickedFile != null) { // memeriksa gambar 
+        setState(() { // memperbarui state widget gambar yang baru dipilih
           _image = File(pickedFile.path);
         });
-
+// membuat file
         String fileName = DateTime.now().toString() + ".png";
 
         Reference storageReference =
             _storage.ref().child("images/user_profile").child(fileName);
-
+// unggah gambar ke firebase
         UploadTask uploadTask = storageReference.putFile(_image!);
 
         await uploadTask.whenComplete(() => print("Image Uploaded"));
@@ -61,6 +63,8 @@ class _Sign_UpState extends State<Sign_Up> {
 
         print("Download URL: $imageUrl");
       }
+      // menangani exception jika terjadi selama eksekusi blok try,
+      //Jika terjadi kesalahan selama proses pemilihan atau pengunggahan gambar, pesan kesalahan dicetak ke konsol.
     } catch (e) {
       print("Error picking and uploading image: $e");
     }
@@ -78,7 +82,7 @@ class _Sign_UpState extends State<Sign_Up> {
               SizedBox(
                 width: 20,
               ),
-              GestureDetector(
+              GestureDetector( // mendeteksi ketekukan pada saat di klik
                 child: Icon(
                   Icons.keyboard_double_arrow_left_outlined,
                   color: Color.fromARGB(255, 180, 212, 41),
@@ -117,7 +121,7 @@ class _Sign_UpState extends State<Sign_Up> {
           Padding(
             padding: EdgeInsets.all(20.0),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+              crossAxisAlignment: CrossAxisAlignment.stretch, // meregang sepanjang lebar kolom
               children: [
                 SizedBox(height: 20),
                 // Padding(
@@ -184,7 +188,7 @@ class _Sign_UpState extends State<Sign_Up> {
                 Stack(
                   children: [
                     Align(
-                      alignment: Alignment.topCenter,
+                      alignment: Alignment.topCenter,// posisis atas tengah
                       child: Container(
                         width: 115,
                         height: 123,
@@ -192,7 +196,7 @@ class _Sign_UpState extends State<Sign_Up> {
                           color: Color.fromRGBO(177, 177, 177, 1),
                           borderRadius: BorderRadius.circular(10.0),
                         ),
-                        child: _image != null
+                        child: _image != null // jika gambar tidak null akan menampilkan gambar jika null menampilkan ikon
                             ? ClipRRect(
                                 borderRadius: BorderRadius.circular(10.0),
                                 child: Image.file(
@@ -239,13 +243,14 @@ class _Sign_UpState extends State<Sign_Up> {
                 SizedBox(height: 30),
 
                 TextFormField(
-                  validator: (value) {
+                  validator: (value) { // jika nilai tidak valid mengembalikan pesan kesalahan, 
+                                      //jika tidak mengembalikan null
                     if (value == null || value.isEmpty) {
                       return 'Nama Lengkap harus diisi';
                     }
                     return null;
                   },
-                  controller: nameController,
+                  controller: nameController, // mengontrol & mendapatkan input teks
                   decoration: InputDecoration(
                     labelText: 'Full Name',
                     labelStyle: TextStyle(color: Colors.grey),
@@ -264,6 +269,7 @@ class _Sign_UpState extends State<Sign_Up> {
                     contentPadding:
                         EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                   ),
+                  // untuk sandi
                   obscureText: false,
                   style: TextStyle(color: Colors.white),
                 ),
@@ -271,13 +277,14 @@ class _Sign_UpState extends State<Sign_Up> {
                 Form(
                   key: _formKey,
                   child: TextFormField(
-                    validator: (value) {
+                    validator: (value) {// jika nilai tidak valid mengembalikan pesan kesalahan, 
+                                      //jika tidak mengembalikan null
                       if (value == null || value.isEmpty) {
                         return 'Email harus diisi';
                       }
                       return null;
                     },
-                    controller: eemailController,
+                    controller: eemailController, // mengontrol & mendapatkan input teks
                     decoration: InputDecoration(
                       labelText: 'Email Address',
                       labelStyle: TextStyle(color: Colors.grey),
@@ -292,6 +299,7 @@ class _Sign_UpState extends State<Sign_Up> {
                       contentPadding:
                           EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                     ),
+                    // untuk sandi
                     obscureText: false,
                     style: TextStyle(color: Colors.white),
                   ),
@@ -299,12 +307,13 @@ class _Sign_UpState extends State<Sign_Up> {
                 SizedBox(height: 18),
                 TextFormField(
                   validator: (value) {
-                    if (value == null || value.isEmpty) {
+                    if (value == null || value.isEmpty) {// jika nilai tidak valid mengembalikan pesan kesalahan, 
+                                      //jika tidak mengembalikan null
                       return 'Password harus diisi';
                     }
                     return null;
                   },
-                  controller: paswordController,
+                  controller: paswordController,  // mengontrol & mendapatkan input teks
                   decoration: InputDecoration(
                     labelText: 'Password',
                     labelStyle: TextStyle(color: Colors.grey),
@@ -326,12 +335,15 @@ class _Sign_UpState extends State<Sign_Up> {
                 SizedBox(height: 18),
                 TextFormField(
                   validator: (value) {
+                    // jika nilai tidak valid mengembalikan pesan kesalahan, 
+                                      //jika tidak mengembalikan null
                     if (value == null || value.isEmpty) {
                       return 'Confirm password harus diisi';
                     }
                     if (value != paswordController.text) {
                       return 'Passwords tidak cocok';
                     }
+                     // Jika melewati kedua pengecekan di atas, nilai dianggap valid
                     return null;
                   },
                   controller: confirpwController,
@@ -384,6 +396,9 @@ class _Sign_UpState extends State<Sign_Up> {
                           shape: OvalBorder(),
                         ),
                         child: IconButton(
+                          //  fungsi yang akan dijalankan ketika tombol ditekan. Pada contoh ini, 
+                          //dilakukan proses pendaftaran pengguna menggunakan fungsi _auth.registerWithEmailAndPassword() 
+                          //yang mengembalikan objek User.
                             onPressed: () async {
                               User? user =
                                   await _auth.registerWithEmailAndPassword(
@@ -412,6 +427,7 @@ class _Sign_UpState extends State<Sign_Up> {
                             },
                             icon: Icon(
                               Icons.keyboard_double_arrow_right_outlined,
+                              //  color: Colors.red,
                             )))
                   ],
                 ),
