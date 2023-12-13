@@ -51,7 +51,7 @@ class _Wallet_TopupState extends State<Wallet_Topup> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Enter Nominal (Min. IDR 10.000)',
+              'Enter Nominal (Min. Rp10.000)',
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.white,
