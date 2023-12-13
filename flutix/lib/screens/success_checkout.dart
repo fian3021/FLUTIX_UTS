@@ -1,3 +1,5 @@
+import 'package:flutix/screens/wallet.dart';
+import 'package:flutix/widgets/app_nav.dart';
 import 'package:flutter/material.dart';
 
 class Success_Checkout extends StatelessWidget {
@@ -50,7 +52,14 @@ class Success_Checkout extends StatelessWidget {
             ),
             SizedBox(height: 106),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Wallet(),
+                  ),
+                );
+              },
               style: ElevatedButton.styleFrom(
                 primary: Color(0xFFB4D429),
                 shape: RoundedRectangleBorder(
@@ -74,7 +83,14 @@ class Success_Checkout extends StatelessWidget {
             ),
             SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => App_Nav(),
+                  ),
+                );
+              },
               style: ElevatedButton.styleFrom(
                 primary: Color(0xFF363538),
                 shape: RoundedRectangleBorder(
