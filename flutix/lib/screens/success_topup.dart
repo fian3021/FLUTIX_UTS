@@ -1,3 +1,5 @@
+import 'package:flutix/screens/wallet.dart';
+import 'package:flutix/widgets/app_nav.dart';
 import 'package:flutter/material.dart';
 
 class Success_Topup extends StatelessWidget {
@@ -6,6 +8,7 @@ class Success_Topup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromRGBO(54, 53, 56, 1),
       body: Center(
         child: Column(
           children: [
@@ -16,7 +19,7 @@ class Success_Topup extends StatelessWidget {
               alignment: AlignmentDirectional.center,
               decoration: ShapeDecoration(
                 image: DecorationImage(
-                  image: AssetImage("asset/success_topup.png"),
+                  image: AssetImage("assets/success_topup.png"),
                   fit: BoxFit.cover,
                 ),
                 shape: RoundedRectangleBorder(
@@ -49,7 +52,12 @@ class Success_Topup extends StatelessWidget {
             ),
             SizedBox(height: 106),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Wallet(),
+                      ),
+                    );},
               style: ElevatedButton.styleFrom(
                 primary: Color(0xFFB4D429),
                 shape: RoundedRectangleBorder(
@@ -73,7 +81,12 @@ class Success_Topup extends StatelessWidget {
             ),
             SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => App_Nav(),
+                      ),
+                    );},
               style: ElevatedButton.styleFrom(
                 primary: Color(0xFF363538),
                 shape: RoundedRectangleBorder(

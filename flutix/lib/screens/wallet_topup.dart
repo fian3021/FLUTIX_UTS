@@ -1,5 +1,6 @@
 import 'package:flutix/model/wallet.dart';
 import 'package:flutix/screens/success_topup.dart';
+import 'package:flutix/widgets/back.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
@@ -24,12 +25,15 @@ class _Wallet_TopupState extends State<Wallet_Topup> {
     final walletProvider = WalletProvider.of(context);
 
     return Scaffold(
+      backgroundColor: Color.fromRGBO(54, 53, 56, 1),
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(54, 53, 56, 1),
-        title: Center(
+        leading: Arrow_Back(),
+        title: Padding(
+          padding: const EdgeInsets.only(left: 70),
           child: Text(
             'Top Up',
-            textAlign: TextAlign.center,
+            // textAlign: TextAlign.center,
             style: TextStyle(
               color: Colors.white,
               fontSize: 21,

@@ -158,7 +158,7 @@ class Wallet extends StatelessWidget {
                       .format(walletProvider.saldo);
 
                   return Text(
-                    'Rp.$saldoFormatted',
+                    'IDR $saldoFormatted',
                     style: TextStyle(
                       color: Color.fromARGB(255, 180, 212, 41),
                       fontSize: 40,

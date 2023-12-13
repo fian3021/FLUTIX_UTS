@@ -2,10 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutix/model/movie_cooming_list.dart';
 import 'package:flutix/model/movie_list_play.dart';
+import 'package:flutix/model/wallet.dart';
 import 'package:flutix/screens/movie_detail.dart';
 // import 'package:flutix/model/movie_list.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 // import 'package:flutix/widgets/app_nav.dart';
 // import 'package:provider/provider.dart';
 
@@ -23,7 +26,7 @@ class _Home_MoviesState extends State<Home_Movies> {
   int _selectedTabIndex = 0;
 
   String namaLengkap = '';
-  String saldo = '';
+  // String saldo = '';
   String imageUrl = '';
 
   void _onNavBarTapped(int index) {
@@ -59,13 +62,13 @@ class _Home_MoviesState extends State<Home_Movies> {
 
           // Mengakses data pengguna
           String fetchednamaLengkap = userData['namaLengkap'];
-          String fetchedsaldo = userData['saldo'];
+          // String fetchedsaldo = userData['saldo'];
           String fetchedeimage = userData['profile'];
 
           // Mengupdate state untuk memperbarui tampilan
           setState(() {
             namaLengkap = fetchednamaLengkap;
-            saldo = fetchedsaldo;
+            // saldo = fetchedsaldo;
             imageUrl = fetchedeimage;
           });
         } else {
@@ -135,70 +138,73 @@ class _Home_MoviesState extends State<Home_Movies> {
                   Stack(
                     children: [
                       imageUrl != null
-                      ?Container(
-                        width: 54,
-                        height: 54,
-                        child: Container(
-                          width: 54,
-                          height: 54,
-                          decoration: ShapeDecoration(
-                            image: DecorationImage(image: NetworkImage(imageUrl),
-                            fit: BoxFit.cover),
-                            color: Colors.black,
-                            // image: DecorationImage(
-                            //   image: NetworkImage(
-                            //       "https://via.placeholder.com/54x54"),
-                            //   fit: BoxFit.fill,
-                            // ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(14),
-                            ),
-                          ),
-                          child: Container(
-                            width: 50,
-                            height: 50,
-                            decoration: ShapeDecoration(
-                              shape: RoundedRectangleBorder(
-                                side: BorderSide(
-                                    width: 1, color: Color(0xFFB4D429)),
-                                borderRadius: BorderRadius.circular(15),
+                          ? Container(
+                              width: 54,
+                              height: 54,
+                              child: Container(
+                                width: 54,
+                                height: 54,
+                                decoration: ShapeDecoration(
+                                  image: DecorationImage(
+                                      image: NetworkImage(imageUrl),
+                                      fit: BoxFit.cover),
+                                  color: Colors.black,
+                                  // image: DecorationImage(
+                                  //   image: NetworkImage(
+                                  //       "https://via.placeholder.com/54x54"),
+                                  //   fit: BoxFit.fill,
+                                  // ),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(14),
+                                  ),
+                                ),
+                                child: Container(
+                                  width: 50,
+                                  height: 50,
+                                  decoration: ShapeDecoration(
+                                    shape: RoundedRectangleBorder(
+                                      side: BorderSide(
+                                          width: 1, color: Color(0xFFB4D429)),
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
-                        ),
-                      )
-                      : Container(
-                        width: 54,
-                        height: 54,
-                        child: Container(
-                          width: 54,
-                          height: 54,
-                          decoration: ShapeDecoration(
-                            image: DecorationImage(image: NetworkImage('https://firebasestorage.googleapis.com/v0/b/flutix-9d582.appspot.com/o/images%2Fuser_profile%2F4.png?alt=media&token=c6683eef-5b77-4d50-bed9-078b7d5df281'),
-                            fit: BoxFit.cover),
-                            color: Colors.black,
-                            // image: DecorationImage(
-                            //   image: NetworkImage(
-                            //       "https://via.placeholder.com/54x54"),
-                            //   fit: BoxFit.fill,
-                            // ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(14),
-                            ),
-                          ),
-                          child: Container(
-                            width: 50,
-                            height: 50,
-                            decoration: ShapeDecoration(
-                              shape: RoundedRectangleBorder(
-                                side: BorderSide(
-                                    width: 1, color: Color(0xFFB4D429)),
-                                borderRadius: BorderRadius.circular(15),
+                            )
+                          : Container(
+                              width: 54,
+                              height: 54,
+                              child: Container(
+                                width: 54,
+                                height: 54,
+                                decoration: ShapeDecoration(
+                                  image: DecorationImage(
+                                      image: NetworkImage(
+                                          'https://firebasestorage.googleapis.com/v0/b/flutix-9d582.appspot.com/o/images%2Fuser_profile%2F4.png?alt=media&token=c6683eef-5b77-4d50-bed9-078b7d5df281'),
+                                      fit: BoxFit.cover),
+                                  color: Colors.black,
+                                  // image: DecorationImage(
+                                  //   image: NetworkImage(
+                                  //       "https://via.placeholder.com/54x54"),
+                                  //   fit: BoxFit.fill,
+                                  // ),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(14),
+                                  ),
+                                ),
+                                child: Container(
+                                  width: 50,
+                                  height: 50,
+                                  decoration: ShapeDecoration(
+                                    shape: RoundedRectangleBorder(
+                                      side: BorderSide(
+                                          width: 1, color: Color(0xFFB4D429)),
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
-                        ),
-                      )
+                            )
                       //  Container(
 
                       //   child: Icon(Icons.person_outline_rounded),
@@ -229,13 +235,32 @@ class _Home_MoviesState extends State<Home_Movies> {
                               fontWeight: FontWeight.w700,
                               color: Colors.white),
                         ),
-                        Text(
-                          'IDR $saldo',
-                          style: TextStyle(
-                            fontSize: 13,
-                            color: Color.fromRGBO(54, 53, 56, 1),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 0),
+                          child: Consumer<WalletProvider>(
+                            builder: (context, walletProvider, child) {
+                              final saldoFormatted =
+                                  NumberFormat.decimalPattern('id_ID')
+                                      .format(walletProvider.saldo);
+
+                              return Text(
+                                'IDR $saldoFormatted',
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  color: Color.fromRGBO(54, 53, 56, 1),
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              );
+                            },
                           ),
                         ),
+                        // Text(
+                        //   'IDR $saldo',
+                        //   style: TextStyle(
+                        //     fontSize: 13,
+                        //     color: Color.fromRGBO(54, 53, 56, 1),
+                        //   ),
+                        // ),
                         // Text(
                         //   '+1 1254 251 241',
                         //   style: TextStyle(
