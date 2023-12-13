@@ -16,8 +16,8 @@ class Checkout_Page extends StatelessWidget {
     var tinggi = MediaQuery.of(context).size.height;
     final walletProvider = WalletProvider.of(context);
 
-    // bool saldoWallet = saldo >= total; //saldo cukup
-    bool saldoWallet = saldo <= total; //saldo tidak cukup
+    bool saldoWallet = walletProvider.saldo >= total; //saldo cukup
+    // bool saldoWallet = saldo <= total; //saldo tidak cukup
 
     return Scaffold(
         backgroundColor: Color.fromRGBO(52, 50, 56, 1),
