@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class WalletProvider extends ChangeNotifier {
-  double _saldo = 0.0;
+  double _saldo = 100000.0;
 
   double get saldo => _saldo;
 

@@ -1,3 +1,4 @@
+import 'package:flutix/model/wallet.dart';
 import 'package:flutix/screens/success_checkout.dart';
 import 'package:flutix/screens/wallet_topup.dart';
 import 'package:flutter/material.dart';
@@ -13,9 +14,10 @@ class Checkout_Page extends StatelessWidget {
   Widget build(BuildContext context) {
     var lebar = MediaQuery.of(context).size.width;
     var tinggi = MediaQuery.of(context).size.height;
+    final walletProvider = WalletProvider.of(context);
 
-    bool saldoWallet = saldo >= total; //saldo cukup
-    // bool saldoWallet = saldo <= total; //saldo tidak cukup
+    // bool saldoWallet = saldo >= total; //saldo cukup
+    bool saldoWallet = saldo <= total; //saldo tidak cukup
 
     return Scaffold(
         backgroundColor: Color.fromRGBO(52, 50, 56, 1),
@@ -251,7 +253,7 @@ class Checkout_Page extends StatelessWidget {
                         style: TextStyle(color: Colors.white, fontSize: 15),
                       ),
                       Text(
-                        "Rp $saldo",
+                        "Rp.${walletProvider.saldo.toString()}",
                         style: TextStyle(color: Colors.white, fontSize: 15),
                       ),
                     ],
