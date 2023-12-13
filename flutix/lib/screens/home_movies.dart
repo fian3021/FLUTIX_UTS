@@ -802,9 +802,21 @@ class Play_Movie extends StatelessWidget {
                       child: Text(
                         "${play.movieListPlay[index].title}",
                         style: TextStyle(
-                            fontSize: 16,
+                            fontSize: 17,
                             fontWeight: FontWeight.w400,
                             color: Colors.white),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.fromLTRB(15, 16, 0, 0),
+                      child: Text(
+                        "⭐⭐⭐⭐⭐ 9/10",
+                        textWidthBasis: TextWidthBasis.parent,
+                        // textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Color.fromRGBO(180, 212, 41, 1),
+                        ),
                       ),
                     ),
                   ],
