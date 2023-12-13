@@ -12,9 +12,12 @@ class Sign_In extends StatefulWidget {
 class _Sign_InState extends State<Sign_In> {
   final AuthService _auth = AuthService(); // mengelola autentifikasi pengguna
 
-  TextEditingController emailController = TextEditingController(); // mendapat nilai inputan dari email
-  TextEditingController passwordController = TextEditingController(); // mendapat nilai inputan dari pasword
-  GlobalKey<FormState> formKey = GlobalKey<FormState>(); // untuk memvalidasi formulir
+  TextEditingController emailController =
+      TextEditingController(); // mendapat nilai inputan dari email
+  TextEditingController passwordController =
+      TextEditingController(); // mendapat nilai inputan dari pasword
+  GlobalKey<FormState> formKey =
+      GlobalKey<FormState>(); // untuk memvalidasi formulir
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +27,10 @@ class _Sign_InState extends State<Sign_In> {
         children: [
           Padding(
             padding: EdgeInsets.all(20.0),
-            child: Form( // membuat formulir di flutter
-              key: formKey, // mengidentifikasi formulir dan memberikan akses untuk berbagai metode formulir
+            child: Form(
+              // membuat formulir di flutter
+              key:
+                  formKey, // mengidentifikasi formulir dan memberikan akses untuk berbagai metode formulir
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
@@ -87,8 +92,9 @@ class _Sign_InState extends State<Sign_In> {
                       fontSize: 15.0,
                       fontFamily: 'Poppins',
                     ),
-                    validator: (value) {// jika nilai tidak valid mengembalikan pesan kesalahan, 
-                                      //jika tidak mengembalikan null
+                    validator: (value) {
+                      // jika nilai tidak valid mengembalikan pesan kesalahan,
+                      //jika tidak mengembalikan null
                       if (value!.isEmpty) {
                         return 'Email is required';
                       }
@@ -118,8 +124,9 @@ class _Sign_InState extends State<Sign_In> {
                       fontSize: 15.0,
                       fontFamily: 'Poppins',
                     ),
-                    validator: (value) {// jika nilai tidak valid mengembalikan pesan kesalahan, 
-                                      //jika tidak mengembalikan null
+                    validator: (value) {
+                      // jika nilai tidak valid mengembalikan pesan kesalahan,
+                      //jika tidak mengembalikan null
                       if (value!.isEmpty) {
                         return 'Password is required';
                       }
@@ -133,7 +140,7 @@ class _Sign_InState extends State<Sign_In> {
                       Container(
                         padding: EdgeInsets.only(right: 20),
                         child: Text(
-                          'Countinue to Sign In',
+                          'Continue to Sign In',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 18,
@@ -152,8 +159,8 @@ class _Sign_InState extends State<Sign_In> {
                             color: Color.fromARGB(255, 180, 212, 41),
                             shape: OvalBorder(),
                           ),
-                          //  fungsi yang akan dijalankan ketika tombol ditekan. Pada contoh ini, 
-                          //dilakukan proses pendaftaran pengguna menggunakan fungsi _auth.signInWithEmailAndPassword() 
+                          //  fungsi yang akan dijalankan ketika tombol ditekan. Pada contoh ini,
+                          //dilakukan proses pendaftaran pengguna menggunakan fungsi _auth.signInWithEmailAndPassword()
                           //yang mengembalikan objek User.
                           child: IconButton(
                               onPressed: () async {
