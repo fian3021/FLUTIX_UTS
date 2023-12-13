@@ -36,7 +36,7 @@ class _User_ProfilingState extends State<User_Profiling> {
         leading: Arrow_Back(),
         title: Padding(
           padding: EdgeInsets.only(left: 60),
-          child: Text('Select Your\nFavourit Genre',
+          child: Text('Select Your\nFavorit Genre',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 20, color: Colors.white)),
         ),
