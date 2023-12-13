@@ -1,5 +1,4 @@
 import 'package:flutix/screens/success_checkout.dart';
-import 'package:flutix/screens/success_topup.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/back.dart';
