@@ -10,10 +10,10 @@ class Sign_In extends StatefulWidget {
 }
 
 class _Sign_InState extends State<Sign_In> {
-  final AuthService _auth = AuthService();
+  final AuthService _auth = AuthService(); // mengelola autentifikasi pengguna
 
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  TextEditingController emailController = TextEditingController(); // mendapat nilai inputan dari email
+  TextEditingController passwordController = TextEditingController(); // mendapat nilai inputan dari pasword
   GlobalKey<FormState> formKey = GlobalKey<FormState>(); // untuk memvalidasi formulir
 
   @override
@@ -24,8 +24,8 @@ class _Sign_InState extends State<Sign_In> {
         children: [
           Padding(
             padding: EdgeInsets.all(20.0),
-            child: Form(
-              key: formKey,
+            child: Form( // membuat formulir di flutter
+              key: formKey, // mengidentifikasi formulir dan memberikan akses untuk berbagai metode formulir
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [

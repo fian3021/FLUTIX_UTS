@@ -11,6 +11,7 @@ class User_Profiling extends StatefulWidget {
 }
 
 class _User_ProfilingState extends State<User_Profiling> {
+  // variabel guna menyimpan index genre dan bahasa
   int selectedGenre = 0;
   int selectedLanguage = 0;
 
@@ -58,10 +59,10 @@ class _User_ProfilingState extends State<User_Profiling> {
               scrollDirection: Axis.horizontal,
               itemCount: 6, // Jumlah item (3 kolom x 2 baris = 6 item)
               itemBuilder: (context, index) {
-                return GestureDetector(
+                return GestureDetector( //pada saat di klik terjadi efek
                   onTap: () {
                     setState(() {
-                      selectedGenre = index;
+                      selectedGenre = index; // mengatur latar belakang jika genre dipilih atau gk
                     });
                   },
                   child: Container(
@@ -75,7 +76,7 @@ class _User_ProfilingState extends State<User_Profiling> {
                       borderRadius: BorderRadius.circular(5),
                     ),
                     child: Text(
-                      getGenre(index + 1),
+                      getGenre(index + 1), // menampilkn teks
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 18,
@@ -145,260 +146,6 @@ class _User_ProfilingState extends State<User_Profiling> {
               },
             ),
           ),
-
-          // Column(
-          //   children: [
-          //     Row(
-          //       crossAxisAlignment: CrossAxisAlignment.center,
-          //       children: [
-          //         SizedBox(width: 10),
-          //         Container(
-          //           width: 175,
-          //           height: 80,
-          //           alignment: AlignmentDirectional.center,
-          //           margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
-          //           decoration: ShapeDecoration(
-          //             shape: RoundedRectangleBorder(
-          //               borderRadius: BorderRadius.circular(15),
-          //             ),
-          //             color: Color.fromRGBO(180, 212, 41, 1),
-          //           ),
-          //           child: Text(
-          //             'Horror',
-          //             style: const TextStyle(
-          //               color: Colors.black,
-          //               fontSize: 18,
-          //               fontFamily: 'Poppins',
-          //             ),
-          //           ),
-          //         ),
-          //         Container(
-          //           width: 175,
-          //           height: 80,
-          //           alignment: AlignmentDirectional.center,
-          //           margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
-          //           decoration: ShapeDecoration(
-          //             shape: RoundedRectangleBorder(
-          //               borderRadius: BorderRadius.circular(15),
-          //             ),
-          //             color: Color.fromRGBO(177, 177, 177, 1),
-          //           ),
-          //           child: Text(
-          //             'Music',
-          //             style: const TextStyle(
-          //               color: Colors.black,
-          //               fontSize: 18,
-          //               fontFamily: 'Poppins',
-          //             ),
-          //           ),
-          //         ),
-          //       ],
-          //     ),
-          //     SizedBox(height: 22),
-          //     Row(
-          //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          //       crossAxisAlignment: CrossAxisAlignment.center,
-          //       children: [
-          //         SizedBox(width: 10),
-          //         Container(
-          //           width: 175,
-          //           height: 80,
-          //           alignment: AlignmentDirectional.center,
-          //           margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
-          //           decoration: ShapeDecoration(
-          //             shape: RoundedRectangleBorder(
-          //               borderRadius: BorderRadius.circular(15),
-          //             ),
-          //             color: Color.fromRGBO(177, 177, 177, 1),
-          //           ),
-          //           child: Text(
-          //             'Action',
-          //             style: const TextStyle(
-          //               color: Colors.black,
-          //               fontSize: 18,
-          //               fontFamily: 'Poppins',
-          //             ),
-          //           ),
-          //         ),
-          //         Container(
-          //           width: 175,
-          //           height: 80,
-          //           alignment: AlignmentDirectional.center,
-          //           margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
-          //           decoration: ShapeDecoration(
-          //             shape: RoundedRectangleBorder(
-          //               borderRadius: BorderRadius.circular(15),
-          //             ),
-          //             color: Color.fromRGBO(177, 177, 177, 1),
-          //           ),
-          //           child: Text(
-          //             'Drama',
-          //             style: const TextStyle(
-          //               color: Colors.black,
-          //               fontSize: 18,
-          //               fontFamily: 'Poppins',
-          //             ),
-          //           ),
-          //         ),
-          //       ],
-          //     ),
-          //     SizedBox(height: 22),
-          //     Row(
-          //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          //       crossAxisAlignment: CrossAxisAlignment.center,
-          //       children: [
-          //         SizedBox(width: 10),
-          //         Container(
-          //           width: 175,
-          //           height: 80,
-          //           alignment: AlignmentDirectional.center,
-          //           margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
-          //           decoration: ShapeDecoration(
-          //             shape: RoundedRectangleBorder(
-          //               borderRadius: BorderRadius.circular(15),
-          //             ),
-          //             color: Color.fromRGBO(177, 177, 177, 1),
-          //           ),
-          //           child: Text(
-          //             'War',
-          //             style: const TextStyle(
-          //               color: Colors.black,
-          //               fontSize: 18,
-          //               fontFamily: 'Poppins',
-          //             ),
-          //           ),
-          //         ),
-          //         Container(
-          //           width: 175,
-          //           height: 80,
-          //           alignment: AlignmentDirectional.center,
-          //           margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
-          //           decoration: ShapeDecoration(
-          //             shape: RoundedRectangleBorder(
-          //               borderRadius: BorderRadius.circular(15),
-          //             ),
-          //             color: Color.fromRGBO(177, 177, 177, 1),
-          //           ),
-          //           child: Text(
-          //             'Crime',
-          //             style: const TextStyle(
-          //               color: Colors.black,
-          //               fontSize: 18,
-          //               fontFamily: 'Poppins',
-          //             ),
-          //           ),
-          //         ),
-          //       ],
-          //     ),
-          //     Column(
-          //       children: [
-          //         SizedBox(height: 30),
-          //         Center(
-          //           child: Text('Which Movie Language\n You Prefer ?',
-          //               textAlign: TextAlign.center,
-          //               style: TextStyle(
-          //                   color: Colors.white,
-          //                   fontSize: 21,
-          //                   fontFamily: 'Poppins')),
-          //         )
-          //       ],
-          //     ),
-          //     SizedBox(height: 30),
-          //     Row(
-          //       crossAxisAlignment: CrossAxisAlignment.center,
-          //       children: [
-          //         SizedBox(width: 10),
-          //         Container(
-          //           width: 175,
-          //           height: 80,
-          //           alignment: AlignmentDirectional.center,
-          //           margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
-          //           decoration: ShapeDecoration(
-          //             shape: RoundedRectangleBorder(
-          //               borderRadius: BorderRadius.circular(15),
-          //             ),
-          //             color: Color.fromRGBO(177, 177, 177, 1),
-          //           ),
-          //           child: Text(
-          //             'Bahasa',
-          //             style: const TextStyle(
-          //               color: Colors.black,
-          //               fontSize: 18,
-          //               fontFamily: 'Poppins',
-          //             ),
-          //           ),
-          //         ),
-          //         Container(
-          //           width: 175,
-          //           height: 80,
-          //           alignment: AlignmentDirectional.center,
-          //           margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
-          //           decoration: ShapeDecoration(
-          //             shape: RoundedRectangleBorder(
-          //               borderRadius: BorderRadius.circular(15),
-          //             ),
-          //             color: Color.fromRGBO(180, 212, 41, 1),
-          //           ),
-          //           child: Text(
-          //             'English',
-          //             style: const TextStyle(
-          //               color: Colors.black,
-          //               fontSize: 18,
-          //               fontFamily: 'Poppins',
-          //             ),
-          //           ),
-          //         ),
-          //       ],
-          //     ),
-          //     SizedBox(height: 22),
-          //     Row(
-          //       crossAxisAlignment: CrossAxisAlignment.center,
-          //       children: [
-          //         SizedBox(width: 10),
-          //         Container(
-          //           width: 175,
-          //           height: 80,
-          //           alignment: AlignmentDirectional.center,
-          //           margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
-          //           decoration: ShapeDecoration(
-          //             shape: RoundedRectangleBorder(
-          //               borderRadius: BorderRadius.circular(15),
-          //             ),
-          //             color: Color.fromRGBO(177, 177, 177, 1),
-          //           ),
-          //           child: Text(
-          //             'Japanese',
-          //             style: const TextStyle(
-          //               color: Colors.black,
-          //               fontSize: 18,
-          //               fontFamily: 'Poppins',
-          //             ),
-          //           ),
-          //         ),
-          //         Container(
-          //           width: 175,
-          //           height: 80,
-          //           alignment: AlignmentDirectional.center,
-          //           margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
-          //           decoration: ShapeDecoration(
-          //             shape: RoundedRectangleBorder(
-          //               borderRadius: BorderRadius.circular(15),
-          //             ),
-          //             color: Color.fromRGBO(177, 177, 177, 1),
-          //           ),
-          //           child: Text(
-          //             'Korean',
-          //             style: const TextStyle(
-          //               color: Colors.black,
-          //               fontSize: 18,
-          //               fontFamily: 'Poppins',
-          //             ),
-          //           ),
-          //         ),
-          //       ],
-          //     ),
-          //   ],
-          // ),
 
           SizedBox(height: 30),
           Row(
