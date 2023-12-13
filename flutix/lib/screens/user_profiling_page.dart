@@ -15,6 +15,7 @@ class _User_ProfilingState extends State<User_Profiling> {
   int selectedGenre = 0;
   int selectedLanguage = 0;
 
+// list untuk menampung isi button
   String getGenre(int genreIndex) {
     List<String> genre = ["Horor", "Music", "Action", "Drama", "War", "Crime"];
     return genre[(genreIndex - 1) % 7];
@@ -50,6 +51,7 @@ class _User_ProfilingState extends State<User_Profiling> {
             margin: EdgeInsets.fromLTRB(30, 20, 30, 20),
             padding: EdgeInsets.only(left: 15),
             child: GridView.builder(
+              // menampilkan elemen genre yg dpt di gulir secra horizontal
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3, // Jumlah kolom
                 crossAxisSpacing: 20, // Jarak antar kolom
@@ -59,10 +61,12 @@ class _User_ProfilingState extends State<User_Profiling> {
               scrollDirection: Axis.horizontal,
               itemCount: 6, // Jumlah item (3 kolom x 2 baris = 6 item)
               itemBuilder: (context, index) {
-                return GestureDetector( //pada saat di klik terjadi efek
+                return GestureDetector(
+                  //pada saat di klik terjadi efek
                   onTap: () {
                     setState(() {
-                      selectedGenre = index; // mengatur latar belakang jika genre dipilih atau gk
+                      selectedGenre =
+                          index; // mengatur latar belakang jika genre dipilih atau gk
                     });
                   },
                   child: Container(
@@ -89,7 +93,6 @@ class _User_ProfilingState extends State<User_Profiling> {
               },
             ),
           ),
-
           SizedBox(
             width: lebar,
             height: 50,
@@ -119,7 +122,7 @@ class _User_ProfilingState extends State<User_Profiling> {
                 return GestureDetector(
                   onTap: () {
                     setState(() {
-                      selectedLanguage = index;
+                      selectedLanguage = index; // terpilih
                     });
                   },
                   child: Container(
@@ -133,7 +136,7 @@ class _User_ProfilingState extends State<User_Profiling> {
                       borderRadius: BorderRadius.circular(5),
                     ),
                     child: Text(
-                      getLanguage(index + 1),
+                      getGenre(index + 1), // menampilkan teks
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 18,
@@ -146,13 +149,12 @@ class _User_ProfilingState extends State<User_Profiling> {
               },
             ),
           ),
-
           SizedBox(height: 30),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                padding: EdgeInsets.only(left: 30),
+                padding: EdgeInsets.only(left: 20),
                 child: TextButton(
                   onPressed: () {
                     Navigator.push(
@@ -170,7 +172,7 @@ class _User_ProfilingState extends State<User_Profiling> {
                 ),
               ),
               Container(
-                  margin: EdgeInsets.only(right: 40),
+                  margin: EdgeInsets.only(right: 56),
                   width: 58,
                   height: 58,
                   decoration: ShapeDecoration(
@@ -190,7 +192,6 @@ class _User_ProfilingState extends State<User_Profiling> {
                       )))
             ],
           ),
-          SizedBox(height: 30),
         ],
       ),
     );
