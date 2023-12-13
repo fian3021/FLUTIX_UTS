@@ -1,11 +1,70 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutix/screens/user_profiling_page.dart';
 import 'package:flutix/widgets/app_nav.dart';
 import 'package:flutter/material.dart';
 
-class ConfirAccount extends StatelessWidget {
+class ConfirAccount extends StatefulWidget {
   const ConfirAccount({super.key});
 
   @override
+  State<ConfirAccount> createState() => _ConfirAccountState();
+}
+
+class _ConfirAccountState extends State<ConfirAccount> {
+  String namaLengkap = '';
+  String imageUrl = '';
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  Future<void> getData() async {
+    try {
+      // Mendapatkan instance user saat ini dari Firebase Authentication
+      User? user = FirebaseAuth.instance.currentUser;
+
+      // Memeriksa apakah user telah login
+      if (user != null) {
+        // Mendapatkan referensi koleksi pengguna di Firestore
+        CollectionReference users =
+            FirebaseFirestore.instance.collection('users');
+
+        // Mendapatkan dokumen pengguna berdasarkan ID pengguna saat ini
+        DocumentSnapshot userDocument = await users.doc(user.uid).get();
+
+        // Mengekstrak data dari dokumen
+        if (userDocument.exists) {
+          Map<String, dynamic> userData =
+              userDocument.data() as Map<String, dynamic>;
+
+          // Mengakses data pengguna
+          String fetchednamaLengkap = userData['namaLengkap'];
+          String fetchedeimage = userData['profile'];
+
+          // Mengupdate state untuk memperbarui tampilan
+          setState(() {
+            namaLengkap = fetchednamaLengkap;
+            imageUrl = fetchedeimage;
+          });
+        } else {
+          print('Dokumen pengguna tidak ditemukan di Firestore.');
+        }
+      } else {
+        // Jika pengguna belum login, tetapkan nilai default "Anonymous"
+        setState(() {
+          namaLengkap = 'Anonymous';
+          // username = 'Anonymous';
+          // email = 'No Email';
+        });
+      }
+    } catch (e) {
+      print('Error saat mengambil data pengguna: $e');
+    }
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromRGBO(54, 53, 56, 1),
@@ -30,7 +89,7 @@ class ConfirAccount extends StatelessWidget {
                   );
                 },
               ),
-               SizedBox(width: 63),
+              SizedBox(width: 63),
               Center(
                 child: Text('Confirm\n New Account',
                     textAlign: TextAlign.center,
@@ -53,9 +112,14 @@ class ConfirAccount extends StatelessWidget {
                     width: 160,
                     height: 160,
                     decoration: BoxDecoration(
+                      image: DecorationImage(image: NetworkImage(imageUrl)),
                       color: Color.fromRGBO(177, 177, 177, 1),
                       borderRadius: BorderRadius.circular(10.0),
                     ),
+                    // child: Image.asset(
+                    //   'assets/your_image_file.png', // Gantilah dengan path gambar Anda
+                    //   fit: BoxFit.cover, // Sesuaikan sesuai kebutuhan
+                    // ),
                   ),
                 ),
               ],
@@ -68,7 +132,7 @@ class ConfirAccount extends StatelessWidget {
               Center(
                 child: Container(
                   child: Text(
-                    'Welcome,\n Angga Risky',
+                    'Welcome,\n $namaLengkap',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.white,

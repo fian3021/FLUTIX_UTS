@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutix/model/AUTH.dart';
 import 'package:flutix/screens/sign_up.dart';
 import 'package:flutter/material.dart';
 import 'package:flutix/widgets/app_nav.dart';
@@ -8,9 +10,11 @@ class Sign_In extends StatefulWidget {
 }
 
 class _Sign_InState extends State<Sign_In> {
+  final AuthService _auth = AuthService();
+
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  GlobalKey<FormState> formKey = GlobalKey<FormState>(); // untuk memvalidasi formulir
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +87,8 @@ class _Sign_InState extends State<Sign_In> {
                       fontSize: 15.0,
                       fontFamily: 'Poppins',
                     ),
-                    validator: (value) {
+                    validator: (value) {// jika nilai tidak valid mengembalikan pesan kesalahan, 
+                                      //jika tidak mengembalikan null
                       if (value!.isEmpty) {
                         return 'Email is required';
                       }
@@ -113,7 +118,8 @@ class _Sign_InState extends State<Sign_In> {
                       fontSize: 15.0,
                       fontFamily: 'Poppins',
                     ),
-                    validator: (value) {
+                    validator: (value) {// jika nilai tidak valid mengembalikan pesan kesalahan, 
+                                      //jika tidak mengembalikan null
                       if (value!.isEmpty) {
                         return 'Password is required';
                       }
@@ -125,7 +131,7 @@ class _Sign_InState extends State<Sign_In> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        padding: EdgeInsets.only(left: 20),
+                        padding: EdgeInsets.only(right: 20),
                         child: Text(
                           'Countinue to Sign In',
                           style: TextStyle(
@@ -139,20 +145,33 @@ class _Sign_InState extends State<Sign_In> {
                         width: 52,
                       ),
                       Container(
-                          margin: EdgeInsets.only(right: 56),
+                          margin: EdgeInsets.only(right: 20),
                           width: 58,
                           height: 58,
                           decoration: ShapeDecoration(
                             color: Color.fromARGB(255, 180, 212, 41),
                             shape: OvalBorder(),
                           ),
+                          //  fungsi yang akan dijalankan ketika tombol ditekan. Pada contoh ini, 
+                          //dilakukan proses pendaftaran pengguna menggunakan fungsi _auth.signInWithEmailAndPassword() 
+                          //yang mengembalikan objek User.
                           child: IconButton(
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => App_Nav()),
-                                );
+                              onPressed: () async {
+                                User? user =
+                                    await _auth.signInWithEmailAndPassword(
+                                        emailController.text,
+                                        passwordController.text,
+                                        context);
+
+                                if (user != null) {
+                                  // Navigasi ke halaman home setelah login berhasil
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => App_Nav(),
+                                    ),
+                                  );
+                                }
                               },
                               icon: Icon(
                                 Icons.keyboard_double_arrow_right_outlined,

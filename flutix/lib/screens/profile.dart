@@ -1,12 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutix/model/AUTH.dart';
+import 'package:flutix/model/wallet.dart';
 import 'package:flutix/screens/edit_profile.dart';
 import 'package:flutix/screens/sign_in.dart';
-import 'package:flutix/screens/splash_screen.dart';
 import 'package:flutix/screens/wallet.dart';
 import 'package:flutter/material.dart';
 import 'package:dotted_line/dotted_line.dart';
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 // import 'package:flutix/widgets/app_nav.dart';
 // import 'package:flutix/widgets/app_nav.dart';
 
@@ -19,8 +21,9 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   String namaLengkap = '';
-  String saldo = '';
+  // String saldo = '';
   String email = '';
+  String imageUrl = '';
 
   @override
   void initState() {
@@ -49,14 +52,16 @@ class _ProfileState extends State<Profile> {
 
           // Mengakses data pengguna
           String fetchednamaLengkap = userData['namaLengkap'];
-          String fetchedsaldo = userData['saldo'];
+          // String fetchedsaldo = userData['saldo'];
           String fetchedemail = userData['email'];
+          String fetchedeimage = userData['profile'];
 
           // Mengupdate state untuk memperbarui tampilan
           setState(() {
             namaLengkap = fetchednamaLengkap;
-            saldo = fetchedsaldo;
+            // saldo = fetchedsaldo;
             email = fetchedemail;
+            imageUrl = fetchedeimage;
           });
         } else {
           print('Dokumen pengguna tidak ditemukan di Firestore.');
@@ -95,10 +100,9 @@ class _ProfileState extends State<Profile> {
                   width: lebar,
                   height: 350,
                   padding: const EdgeInsets.all(0),
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: AssetImage("assets/saldo.png"),
-                          fit: BoxFit.cover)),
+                          image: NetworkImage(imageUrl), fit: BoxFit.cover)),
                   child: Container(
                     width: lebar,
                     height: tinggi,
@@ -120,9 +124,10 @@ class _ProfileState extends State<Profile> {
                           width: 100,
                           height: 100,
                           decoration: ShapeDecoration(
+                            color: Colors.black,
                             image: DecorationImage(
-                              image: AssetImage("assets/theNun.png"),
-                              fit: BoxFit.fill,
+                              image: NetworkImage(imageUrl),
+                              fit: BoxFit.cover,
                             ),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(14),
@@ -208,15 +213,37 @@ class _ProfileState extends State<Profile> {
                                         fontWeight: FontWeight.w400,
                                       ),
                                     ),
-                                    Text(
-                                      'IDR $saldo',
-                                      style: TextStyle(
-                                        color:
-                                            Color.fromARGB(255, 180, 212, 41),
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w500,
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 0),
+                                      child: Consumer<WalletProvider>(
+                                        builder:
+                                            (context, walletProvider, child) {
+                                          final saldoFormatted =
+                                              NumberFormat.decimalPattern(
+                                                      'id_ID')
+                                                  .format(walletProvider.saldo);
+
+                                          return Text(
+                                            'IDR $saldoFormatted',
+                                            style: TextStyle(
+                                              color: Color.fromARGB(
+                                                  255, 180, 212, 41),
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          );
+                                        },
                                       ),
-                                    )
+                                    ),
+                                    // Text(
+                                    //   'IDR $saldo',
+                                    //   style: TextStyle(
+                                    //     color:
+                                    //         Color.fromARGB(255, 180, 212, 41),
+                                    //     fontSize: 18,
+                                    //     fontWeight: FontWeight.w500,
+                                    //   ),
+                                    // )
                                   ],
                                 )
                               ],

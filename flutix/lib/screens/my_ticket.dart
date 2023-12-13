@@ -32,20 +32,6 @@ class _MyTicketsState extends State<MyTickets> {
             ),
           ),
         ),
-        // title: SizedBox(
-        //   width: 5,
-        //   child: Text(
-        //     'My Tickets',
-        //     textAlign: TextAlign.center,
-        //     style: TextStyle(
-        //       color: Colors.white,
-        //       fontSize: 21,
-        //       fontFamily: 'Poppins',
-        //       fontWeight: FontWeight.w400,
-        //       height: 0,
-        //     ),
-        //   ),
-        // ),
       ),
       body: Center(
         child: Stack(
