@@ -1,11 +1,12 @@
 import 'package:flutix/screens/success_checkout.dart';
+import 'package:flutix/screens/wallet_topup.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/back.dart';
 
 class Checkout_Page extends StatelessWidget {
   const Checkout_Page({super.key});
-  final double saldo = 280000;
+  final double saldo = 0;
   final double total = 100000;
 
   @override
@@ -281,13 +282,22 @@ class Checkout_Page extends StatelessWidget {
                           shape: OvalBorder(),
                         ),
                         child: IconButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Success_Checkout()),
-                              );
-                            },
+                            onPressed: saldoWallet
+                                ? () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              Success_Checkout()),
+                                    );
+                                  }
+                                : () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Wallet_Topup()),
+                                    );
+                                  },
                             icon: Icon(
                               Icons.keyboard_double_arrow_right_outlined,
                             )))

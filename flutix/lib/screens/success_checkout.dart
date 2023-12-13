@@ -17,7 +17,7 @@ class Success_Checkout extends StatelessWidget {
               alignment: AlignmentDirectional.center,
               decoration: ShapeDecoration(
                 image: DecorationImage(
-                  image: AssetImage("asset/success_checkout.png"),
+                  image: AssetImage("assets/success_checkout.png"),
                   fit: BoxFit.cover,
                 ),
                 shape: RoundedRectangleBorder(

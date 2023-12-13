@@ -51,7 +51,8 @@ class _Select_Place_DateState extends State<Select_Place_Date> {
         backgroundColor: Color.fromRGBO(52, 50, 56, 1),
         appBar: AppBar(
           leading: Arrow_Back(),
-          title: Center(
+          title: Padding(
+            padding: EdgeInsets.only(left: 70),
             child: Text('Choose Date',
                 style: TextStyle(fontSize: 20, color: Colors.white)),
           ),
@@ -118,14 +119,9 @@ class _Select_Place_DateState extends State<Select_Place_Date> {
                 }),
               ),
             ),
-            // SizedBox(
-            //   width: lebar,
-            //   height: 60,
-            //   child: ListView(
-            //     children: [],
-            //   ),
-            // ),
-
+            SizedBox(
+              height: 15,
+            ),
             SizedBox(
               width: lebar,
               height: 50,
@@ -138,7 +134,7 @@ class _Select_Place_DateState extends State<Select_Place_Date> {
             ),
             SizedBox(
               width: lebar,
-              height: 280,
+              height: 270,
               child: ListView(
                 scrollDirection: Axis.vertical,
                 children: List.generate(4, (index) {
@@ -174,11 +170,9 @@ class _Select_Place_DateState extends State<Select_Place_Date> {
                 }),
               ),
             ),
-
             SizedBox(
               height: 15,
             ),
-
             SizedBox(
               width: lebar,
               height: 50,
@@ -237,7 +231,6 @@ class _Select_Place_DateState extends State<Select_Place_Date> {
                 }),
               ),
             ),
-
             SizedBox(
               height: 60,
             ),

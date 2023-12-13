@@ -1,4 +1,5 @@
 import 'package:flutix/screens/checkout_page.dart';
+import 'package:flutix/widgets/back.dart';
 // import 'package:flutix/screens/success_checkout.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,9 @@ class Select_Seat extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color.fromRGBO(52, 50, 56, 1),
       appBar: AppBar(
-        title: Center(
+        leading: Arrow_Back(),
+        title: Padding(
+          padding: EdgeInsets.only(left: 70),
           child: Text('Select Seat',
               style: TextStyle(fontSize: 20, color: Colors.white)),
         ),
