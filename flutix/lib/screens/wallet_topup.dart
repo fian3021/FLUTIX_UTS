@@ -28,20 +28,23 @@ class _Wallet_TopupState extends State<Wallet_Topup> {
       backgroundColor: Color.fromRGBO(54, 53, 56, 1),
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(54, 53, 56, 1),
-        leading: Arrow_Back(),
-        title: Padding(
-          padding: const EdgeInsets.only(left: 70),
-          child: Text(
-            'Top Up',
-            // textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 21,
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.w400,
-              height: 0,
-            ),
+        leading: GestureDetector(
+          child: Icon(
+            Icons.keyboard_double_arrow_left_outlined,
+            size: 30,
+            color: Color.fromARGB(255, 180, 212, 41),
           ),
+          onTap: () {
+            Navigator.pop(context);
+          },
+        ),
+        title: Padding(
+          padding: const EdgeInsets.only(left: 75),
+          child: Text('Top Up',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 21,
+              )),
         ),
       ),
       body: Padding(

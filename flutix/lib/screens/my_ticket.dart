@@ -18,19 +18,24 @@ class _MyTicketsState extends State<MyTickets> {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 54, 53, 56),
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 54, 53, 56),
-        title: Center(
-          child: const Text(
-            'My Tickets',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 21,
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.w400,
-              height: 0,
-            ),
+        backgroundColor: Color.fromRGBO(54, 53, 56, 1),
+        leading: GestureDetector(
+          child: Icon(
+            Icons.keyboard_double_arrow_left_outlined,
+            size: 30,
+            color: Color.fromARGB(255, 180, 212, 41),
           ),
+          onTap: () {
+            Navigator.pop(context);
+          },
+        ),
+        title: Padding(
+          padding: const EdgeInsets.only(left: 75),
+          child: Text('My Tickets',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 21,
+              )),
         ),
       ),
       body: Center(
