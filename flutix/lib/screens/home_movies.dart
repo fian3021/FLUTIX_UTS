@@ -533,7 +533,7 @@ class _Home_MoviesState extends State<Home_Movies> {
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 15, 0, 15),
               child: Text(
-                'Cooming Soon',
+                'Coming Soon',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 20,

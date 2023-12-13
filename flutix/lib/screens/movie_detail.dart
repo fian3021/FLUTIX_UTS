@@ -322,13 +322,20 @@ class Movie_Detail extends StatelessWidget {
                       ),
                     );
                   },
+                  // style: ElevatedButton.styleFrom(
+                  //   padding: EdgeInsets.all(20),
+                  //   primary: Color.fromRGBO(180, 212, 41, 1),
+                  //   shape: RoundedRectangleBorder(
+                  //     borderRadius: BorderRadius.circular(6),
+                  //   ),
+                  //   minimumSize: Size(240, 40), // Ukuran button
+                  // ),
                   style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.all(20),
-                    primary: Color.fromRGBO(180, 212, 41, 1),
+                    foregroundColor: Color.fromARGB(255, 54, 53, 56),
+                    backgroundColor: Color.fromARGB(255, 180, 212, 41),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(6),
+                      borderRadius: BorderRadius.circular(5),
                     ),
-                    minimumSize: Size(240, 40), // Ukuran button
                   ),
                   child: Text(
                     "Continue to Book",
@@ -339,7 +346,7 @@ class Movie_Detail extends StatelessWidget {
                       color: Color.fromRGBO(54, 53, 56, 1),
                     ),
                   )),
-            )
+            ),
           ],
         ));
   }
