@@ -196,10 +196,10 @@ class _Sign_UpState extends State<Sign_Up> {
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         child: _image != null // jika gambar tidak null akan menampilkan gambar jika null menampilkan ikon
-                            ? ClipRRect(
+                            ? ClipRRect( // widget untuk membatasi
                                 borderRadius: BorderRadius.circular(10.0),
                                 child: Image.file(
-                                  _image!,
+                                  _image!, // variabel image tidak boleh null
                                   width: 115,
                                   height: 123,
                                   fit: BoxFit.cover,
