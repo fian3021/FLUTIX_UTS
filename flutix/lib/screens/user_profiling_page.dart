@@ -59,10 +59,12 @@ class _User_ProfilingState extends State<User_Profiling> {
               scrollDirection: Axis.horizontal,
               itemCount: 6, // Jumlah item (3 kolom x 2 baris = 6 item)
               itemBuilder: (context, index) {
-                return GestureDetector( //pada saat di klik terjadi efek
+                return GestureDetector(
+                  //pada saat di klik terjadi efek
                   onTap: () {
                     setState(() {
-                      selectedGenre = index; // mengatur latar belakang jika genre dipilih atau gk
+                      selectedGenre =
+                          index; // mengatur latar belakang jika genre dipilih atau gk
                     });
                   },
                   child: Container(
@@ -89,7 +91,6 @@ class _User_ProfilingState extends State<User_Profiling> {
               },
             ),
           ),
-
           SizedBox(
             width: lebar,
             height: 50,
@@ -146,7 +147,6 @@ class _User_ProfilingState extends State<User_Profiling> {
               },
             ),
           ),
-
           SizedBox(height: 30),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
