@@ -148,7 +148,7 @@ class _Home_MoviesState extends State<Home_Movies> {
                                   image: DecorationImage(
                                       image: NetworkImage(imageUrl),
                                       fit: BoxFit.cover),
-                                  color: Colors.black,
+                                  color: Color(0xFFB4D429),
                                   // image: DecorationImage(
                                   //   image: NetworkImage(
                                   //       "https://via.placeholder.com/54x54"),
@@ -182,7 +182,7 @@ class _Home_MoviesState extends State<Home_Movies> {
                                       image: NetworkImage(
                                           'https://firebasestorage.googleapis.com/v0/b/flutix-9d582.appspot.com/o/images%2Fuser_profile%2F4.png?alt=media&token=c6683eef-5b77-4d50-bed9-078b7d5df281'),
                                       fit: BoxFit.cover),
-                                  color: Colors.black,
+                                  color: Color(0xFFB4D429),
                                   // image: DecorationImage(
                                   //   image: NetworkImage(
                                   //       "https://via.placeholder.com/54x54"),

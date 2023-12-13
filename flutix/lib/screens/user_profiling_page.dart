@@ -190,8 +190,10 @@ class _User_ProfilingState extends State<User_Profiling> {
                       icon: Icon(
                         Icons.keyboard_double_arrow_right_outlined,
                       )))
+                      
             ],
           ),
+          SizedBox(height: 30,)
         ],
       ),
     );
