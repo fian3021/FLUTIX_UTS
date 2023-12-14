@@ -1,1 +1,0 @@
-Rp.${walletProvider.saldo.toString()}',
